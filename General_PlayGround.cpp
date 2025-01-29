@@ -125,10 +125,12 @@ int FindingParents(vector<int> &Parents, int Node)
     return Parents[Node] = FindingParents(Parents, Parents[Node]);
 }
 
-void UnionSet(int U, int V, vector<int> &Parents, vector<int> &Ranks)
+bool UnionSet(int U, int V, vector<int> &Parents, vector<int> &Ranks)
 {
     int U_Parent = FindingParents(Parents, U);
     int V_Parent = FindingParents(Parents, V);
+
+    if(U_Parent == V_Parent) return false;
 
     if (U_Parent != V_Parent)
     {
@@ -146,6 +148,7 @@ void UnionSet(int U, int V, vector<int> &Parents, vector<int> &Ranks)
             Ranks[V_Parent]++;
         }
     }
+    return true;
 }
 
 void Kruskals_Algorithm(vector<vector<int>> Edges, int Total_Nodes)
@@ -164,7 +167,6 @@ void Kruskals_Algorithm(vector<vector<int>> Edges, int Total_Nodes)
     {
         int Parent_of_U = FindingParents(Parents, Edges[i][0]);
         int Parent_of_V = FindingParents(Parents, Edges[i][1]);
-        int Weight = Edges[i][2];
 
         if (Parent_of_U != Parent_of_V)
         {
