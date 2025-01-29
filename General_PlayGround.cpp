@@ -115,68 +115,33 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-int FindingParents(vector<int> &Parents, int Node)
-{
-    if (Parents[Node] == Node)
+void Solve(int CurrentNumber, int limit,vector<int>&Res)
+{   
+    if(CurrentNumber>limit)
     {
-        return Node;
+        return;
     }
 
-    return Parents[Node] = FindingParents(Parents, Parents[Node]);
+    Res.push_back(CurrentNumber);
+
+
+    for(int i = 0; i <= 9; i++)
+    {
+        
+    }
+
 }
 
-bool UnionSet(int U, int V, vector<int> &Parents, vector<int> &Ranks)
+vector<int> lexicalOrder(int n)
 {
-    int U_Parent = FindingParents(Parents, U);
-    int V_Parent = FindingParents(Parents, V);
+    vector<int>Res; 
 
-    if (U_Parent == V_Parent)
-        return false;
-
-    if (U_Parent != V_Parent)
+    for(int i = 1; i <= 9; i++)
     {
-        if (Ranks[U_Parent] < Ranks[V_Parent])
-        {
-            Parents[U_Parent] = V_Parent;
-        }
-        else if (Ranks[U_Parent] > Ranks[V_Parent])
-        {
-            Parents[V_Parent] = U_Parent;
-        }
-        else
-        {
-            Parents[U_Parent] = V_Parent;
-            Ranks[V_Parent]++;
-        }
-    }
-    return true;
-}
+        Solve(i,n,Res);
+    } 
 
-vector<int> Kruskals_Algorithm(vector<vector<int>> &Edges)
-{
-    vector<int> Parents(Edges.size() + 1);
-    vector<int> Ranks(Edges.size() + 1, 0);
-
-    for (int i = 1; i < Parents.size(); i++)
-    {
-        Parents[i] = i;
-    }
-
-    for (int i = 0; i < Edges.size(); i++)
-    {
-
-        if(!UnionSet(Edges[i][0], Edges[i][1], Parents, Ranks))
-        {
-            return {Edges[i][0],Edges[i][1]};
-        }
-    }
-
-    return {};
-}
-
-vector<int> findRedundantConnection(vector<vector<int>> edges)
-{
-    return Kruskals_Algorithm(edges);
+    return Res;
 }
 
 int main()
@@ -185,9 +150,9 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    PrintVector(findRedundantConnection(vector<vector<int>>{{1, 2}, {1, 3}, {2, 3}}));
-    PrintVector(findRedundantConnection(vector<vector<int>>{{1, 2}, {2, 3}, {3, 4}, {1, 4}, {1, 5}}));
-
+    PrintVector(lexicalOrder(13));
+    PrintVector(lexicalOrder(2));
+    
     /************************************************************************************/
 
     // Record the end time
