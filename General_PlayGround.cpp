@@ -167,3 +167,8 @@ int main()
 
 
 /*Dry Run:*/
+//C: 1    RES: 1
+//C: 10    RES: 1,10
+//C: 1    RES: 1
+//C: 1    RES: 1
+//C: 1    RES: 1
