@@ -147,12 +147,21 @@ void TestCase3()
 int maxSatisfaction(vector<int> satisfaction)
 {
     int res = 0;
+    int time = satisfaction.size();
 
-    sort(satisfaction.begin(),satisfaction.end());
+    sort(satisfaction.rbegin(),satisfaction.rend());
 
-    
+    for(int i = 0; i < satisfaction.size(); i++)
+    {
+        if((satisfaction[i] * time) + res >= 0)
+        {
+            int Sum = satisfaction[i] * time;
+            res += Sum;
+        }
+        time--;
+    }
 
-    return res = 0;
+    return res;
 }
 
 int main()
