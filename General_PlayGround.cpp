@@ -149,16 +149,20 @@ int maxSatisfaction(vector<int> satisfaction)
     int res = 0;
     int time = satisfaction.size();
 
-    sort(satisfaction.rbegin(),satisfaction.rend());
+    sort(satisfaction.begin(), satisfaction.end());
 
-    for(int i = 0; i < satisfaction.size(); i++)
+    PrintVector(satisfaction);
+
+    for (int i = 0; i < satisfaction.size(); i++)
     {
-        if((satisfaction[i] * time) + res >= 0)
+        int sum = satisfaction[i] * time;
+
+        if (sum > 0)
         {
-            int Sum = satisfaction[i] * time;
-            res += Sum;
+            res += sum;
+            time--;
         }
-        time--;
+
     }
 
     return res;
@@ -174,9 +178,9 @@ int main()
     // TestCase2();
     // TestCase3();
 
-    cout<<maxSatisfaction(vector<int>{-1,-8,0,5,-9})<<endl;
-    cout<<maxSatisfaction(vector<int>{4,3,2})<<endl;
-    cout<<maxSatisfaction(vector<int>{-1,-4,-5})<<endl;
+    cout << maxSatisfaction(vector<int>{-1, -8, 0, 5, -9}) << endl;
+    cout << maxSatisfaction(vector<int>{4, 3, 2}) << endl;
+    cout << maxSatisfaction(vector<int>{-1, -4, -5}) << endl;
 
     /************************************************************************************/
 
