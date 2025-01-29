@@ -130,7 +130,8 @@ bool UnionSet(int U, int V, vector<int> &Parents, vector<int> &Ranks)
     int U_Parent = FindingParents(Parents, U);
     int V_Parent = FindingParents(Parents, V);
 
-    if(U_Parent == V_Parent) return false;
+    if (U_Parent == V_Parent)
+        return false;
 
     if (U_Parent != V_Parent)
     {
@@ -151,31 +152,31 @@ bool UnionSet(int U, int V, vector<int> &Parents, vector<int> &Ranks)
     return true;
 }
 
-void Kruskals_Algorithm(vector<vector<int>> Edges, int Total_Nodes)
+vector<int> Kruskals_Algorithm(vector<vector<int>> &Edges)
 {
-    vector<int> Parents(Total_Nodes);
-    vector<int> Ranks(Total_Nodes, 0);
+    vector<int> Parents(Edges.size() + 1);
+    vector<int> Ranks(Edges.size() + 1, 0);
 
-    for (int i = 0; i < Total_Nodes; i++)
+    for (int i = 1; i < Parents.size(); i++)
     {
         Parents[i] = i;
     }
 
-    int Total_Minimum_Weight = 0;
-
     for (int i = 0; i < Edges.size(); i++)
     {
-        int Parent_of_U = FindingParents(Parents, Edges[i][0]);
-        int Parent_of_V = FindingParents(Parents, Edges[i][1]);
 
-        if (Parent_of_U != Parent_of_V)
+        if(!UnionSet(Edges[i][0], Edges[i][1], Parents, Ranks))
         {
-            Total_Minimum_Weight += Weight;
-            UnionSet(Edges[i][0], Edges[i][1], Parents, Ranks);
+            return {Edges[i][0],Edges[i][1]};
         }
     }
 
-    cout << Total_Minimum_Weight << endl;
+    return {};
+}
+
+vector<int> findRedundantConnection(vector<vector<int>> edges)
+{
+    return Kruskals_Algorithm(edges);
 }
 
 int main()
@@ -183,6 +184,9 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
+
+    PrintVector(findRedundantConnection(vector<vector<int>>{{1, 2}, {1, 3}, {2, 3}}));
+    PrintVector(findRedundantConnection(vector<vector<int>>{{1, 2}, {2, 3}, {3, 4}, {1, 4}, {1, 5}}));
 
     /************************************************************************************/
 
