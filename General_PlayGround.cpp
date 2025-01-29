@@ -117,7 +117,7 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 
 int maxScoreWords(vector<string> &words, vector<char> &letters, vector<int> &score)
 {
-    return words.size();
+    return 0;
 }
 
 void TestCase1()
@@ -144,15 +144,21 @@ void TestCase3()
     cout << "TEST CASE 3: " << maxScoreWords(words, letters, score) << endl;
 }
 
+int maxSatisfaction(vector<int> satisfaction)
+{
+}
+
 int main()
 {
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
 
-    TestCase1();
-    TestCase2();
-    TestCase3();
+    // TestCase1();
+    // TestCase2();
+    // TestCase3();
+
+    
 
     /************************************************************************************/
 
