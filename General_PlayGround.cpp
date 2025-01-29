@@ -115,32 +115,33 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-vector<int> lexicalOrder(int n)
+int maxScoreWords(vector<string> &words, vector<char> &letters, vector<int> &score)
 {
-    vector<int> Res;
+    return words.size();
+}
 
-    int Current_Number = 1;
+void TestCase1()
+{
+    vector<string> words = {"dog", "cat", "dad", "good"};
+    vector<char> letters = {'a', 'a', 'c', 'd', 'd', 'g', 'o', 'o'};
+    vector<int> score = {1, 0, 9, 5, 0, 3, 2, 3, 4, 0, 8, 6, 7, 2, 5, 8, 9, 6, 9, 9, 9, 1, 4, 1, 3, 3};
+    cout << "TEST CASE 1: " << maxScoreWords(words, letters, score) << endl;
+}
 
-    for(int i = 0; i < n; i++)
-    {
-        Res.push_back(Current_Number);
+void TestCase2()
+{
+    vector<string> words = {"xxxz", "ax", "bx", "cx"};
+    vector<char> letters = {'z', 'a', 'b', 'c', 'x', 'x', 'x'};
+    vector<int> score = {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4};
+    cout << "TEST CASE 2: " << maxScoreWords(words, letters, score) << endl;
+}
 
-        if(Current_Number*10 <= n)
-        {
-            Current_Number*=10;
-        }
-        else
-        {
-            while(Current_Number%10 == 9 || Current_Number > n)
-            {
-                Current_Number /= 10;
-            }
-
-            Current_Number++;
-        }
-    }
-
-    return Res;
+void TestCase3()
+{
+    vector<string> words = {"leetcode"};
+    vector<char> letters = {'l', 'e', 't', 'c', 'o', 'd'};
+    vector<int> score = {1, 0, 9, 5, 0, 3, 2, 3, 4, 0, 8, 6, 7, 2, 5, 8, 9, 6, 9, 9, 9, 1, 4, 1, 3, 3};
+    cout << "TEST CASE 3: " << maxScoreWords(words, letters, score) << endl;
 }
 
 int main()
@@ -149,8 +150,9 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    PrintVector(lexicalOrder(13));
-    PrintVector(lexicalOrder(2));
+    TestCase1();
+    TestCase2();
+    TestCase3();
 
     /************************************************************************************/
 
@@ -165,10 +167,9 @@ int main()
     return 0;
 }
 
-
 /*Dry Run:*/
-//C: 1    RES: 1
-//C: 10    RES: 1,10
-//C: 11    RES: 1,10,11
-//C: 1    RES: 1
-//C: 1    RES: 1
+// C: 1    RES: 1
+// C: 10    RES: 1,10
+// C: 11    RES: 1,10,11
+// C: 1    RES: 1
+// C: 1    RES: 1
