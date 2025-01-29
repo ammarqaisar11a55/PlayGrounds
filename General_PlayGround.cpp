@@ -146,7 +146,13 @@ void TestCase3()
 
 int maxSatisfaction(vector<int> satisfaction)
 {
+    int res = 0;
+
+    sort(satisfaction.begin(),satisfaction.end());
+
     
+
+    return res = 0;
 }
 
 int main()
