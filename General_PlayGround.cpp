@@ -158,9 +158,6 @@ void Kruskals_Algorithm(vector<vector<int>> Edges, int Total_Nodes)
         Parents[i] = i;
     }
 
-    sort(Edges.begin(), Edges.end(), [](vector<int> A, vector<int> B)
-         { return A[2] < B[2]; });
-
     int Total_Minimum_Weight = 0;
 
     for (int i = 0; i < Edges.size(); i++)
@@ -177,18 +174,6 @@ void Kruskals_Algorithm(vector<vector<int>> Edges, int Total_Nodes)
     }
 
     cout << Total_Minimum_Weight << endl;
-
-    // Test Cases:
-
-    // vector<vector<int>> Edges;
-
-    // Edges.push_back({0, 1, 10});
-    // Edges.push_back({0, 2, 6});
-    // Edges.push_back({0, 3, 5});
-    // Edges.push_back({1, 3, 15});
-    // Edges.push_back({2, 3, 4});
-
-    // Kruskals_Algorithm(Edges, 4);
 }
 
 int main()
