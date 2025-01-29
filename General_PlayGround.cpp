@@ -131,11 +131,13 @@ vector<int> lexicalOrder(int n)
         }
         else
         {
-            
+            while(Current_Number%10 == 9 || Current_Number > n)
+            {
+                Current_Number /= 10;
+            }
+
+            Current_Number++;
         }
-
-
-        Current_Number++;
     }
 
     return Res;
