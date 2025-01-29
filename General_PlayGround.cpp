@@ -146,6 +146,7 @@ void TestCase3()
 
 int maxSatisfaction(vector<int> satisfaction)
 {
+    
 }
 
 int main()
@@ -158,7 +159,9 @@ int main()
     // TestCase2();
     // TestCase3();
 
-    
+    cout<<maxSatisfaction(vector<int>{-1,-8,0,5,-9})<<endl;
+    cout<<maxSatisfaction(vector<int>{4,3,2})<<endl;
+    cout<<maxSatisfaction(vector<int>{-1,-4,-5})<<endl;
 
     /************************************************************************************/
 
