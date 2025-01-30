@@ -120,41 +120,9 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-bool Check(int Number, int Base)
-{
-    string representation;
 
-    while (Number > 0)
-    {
-        representation+= to_string(Number % Base);
-        Number /= Base;
-    }
 
-    int i = 0;
-    int j = representation.size() - 1;
 
-    cout << "Number: " << Number << " -> Base -> " << Base << " -> " << representation << endl;
-
-    while (i < j)
-    {
-        if (representation[i] != representation[j])
-            return false;
-
-        i++;
-        j--;
-    }
-
-    return true;
-}
-
-bool isStrictlyPalindromic(int n)
-{
-
-    Check(10,8);    
-    Check(9,7);    
-    
-    return true;
-}
 
 int main()
 {
