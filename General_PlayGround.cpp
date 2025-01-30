@@ -128,26 +128,19 @@ int minSteps(string s, string t)
     if (s == t)
         return 0;
 
-    unordered_map<char,int>T_Letters_with_Pos;
-
-    for(int i = 0; i < t.length(); i++)
-    {
-        T_Letters_with_Pos[t[i]] = i;
-    }
+    multiset<char>T_Letters(t.begin(),t.end());
 
     int res = 0;
 
-    unordered_set<char>New_Inserted_Letters;
-
     for(int i = 0; i < s.length(); i++)
     {
-        if(T_Letters_with_Pos.find(s[i])==T_Letters_with_Pos.end())
+        if(T_Letters.find(s[i])==T_Letters.end())
         {
-            if(New_Inserted_Letters.find(s[i])==New_Inserted_Letters.end())
-            {
-                New_Inserted_Letters.insert(s[i]);
-                res++;
-            }
+            res++;
+        }
+        else
+        {
+            T_Letters.erase(s[i]);
         }
     }
 
