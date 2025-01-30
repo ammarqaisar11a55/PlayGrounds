@@ -120,9 +120,28 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
+void DFS(vector<vector<int>> &grid, int i, int j, int ups,int downs, int lefts, int rights, int &Res)
+{
+
+}
+
 int uniquePathsIII(vector<vector<int>> &grid)
 {
-    return 0;
+    int Res = 0;
+
+    for(int i = 0; i < grid.size(); i++)
+    {
+        for(int j = 0; j < grid[i].size(); j++)
+        {
+            if(grid[i][j] == 1)
+            {
+                DFS(grid,i,j,0,0,0,0,Res);
+                break;
+            }
+        }
+    }
+
+    return Res;
 }
 
 int main()
