@@ -115,9 +115,23 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-int findTheWinner(int n, int k)
+int minSteps(string s, string t)
 {
-    
+    sort(s.begin(), s.end());
+    sort(t.begin(), t.end());
+
+    if (s == t)
+        return 0;
+
+    int res = 0;
+
+    for(int i = 0; i < s.length(); i++)
+    {
+        if(s[i] != t[i])
+            res++;
+    }
+
+    return res;
 }
 
 int main()
@@ -126,8 +140,9 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    cout<<findTheWinner(5,2)<<endl;
-    cout<<findTheWinner(6,5)<<endl;
+    cout << minSteps("bab", "aba") << endl;
+    cout << minSteps("leetcode", "practice") << endl;
+    cout << minSteps("anagram", "mangaar") << endl;
 
     /************************************************************************************/
 
