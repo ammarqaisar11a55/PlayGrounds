@@ -134,6 +134,11 @@ void DFS(vector<vector<int>> &grid, int i, int j, int ups, int downs, int lefts,
     int temp = grid[i][j];
     grid[i][j] = -1;
 
+    DFS(grid, i + 1, j, ups, downs + 1, lefts, rights, Res);
+    DFS(grid, i - 1, j, ups + 1, downs, lefts, rights, Res);
+    DFS(grid, i, j - 1, ups, downs, lefts + 1, rights, Res);
+    DFS(grid, i, j + 1, ups, downs, lefts, rights + 1, Res);
+
     grid[i][j] = temp;
 }
 
