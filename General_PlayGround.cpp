@@ -123,7 +123,12 @@ int minSteps(string s, string t)
     if (s == t)
         return 0;
 
-    unordered_set<char>T_Letters(t.begin(),t.end());
+    unordered_map<char,int>T_Letters_with_Pos;
+
+    for(int i = 0; i < t.length(); i++)
+    {
+        T_Letters_with_Pos[t[i]] = i;
+    }
 
     int res = 0;
 
