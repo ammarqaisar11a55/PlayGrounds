@@ -11,8 +11,13 @@
 #include <chrono>
 #include <map>
 #include <list>
-
 using namespace std;
+
+template<typename T>
+void Print(T D)
+{
+    cout<<D<<end;
+}
 
 void PrintVector(vector<string> a)
 {
@@ -132,7 +137,19 @@ int minSteps(string s, string t)
 
     int res = 0;
 
-    
+    unordered_set<char>New_Inserted_Letters;
+
+    for(int i = 0; i < s.length(); i++)
+    {
+        if(T_Letters_with_Pos.find(s[i])==T_Letters_with_Pos.end())
+        {
+            if(New_Inserted_Letters.find(s[i])==New_Inserted_Letters.end())
+            {
+                New_Inserted_Letters.insert(s[i]);
+                res++;
+            }
+        }
+    }
 
     return res;
 }
