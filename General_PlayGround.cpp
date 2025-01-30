@@ -136,14 +136,9 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    vector<vector<int>> test1 = {{1, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 2, -1}};
-    cout << uniquePathsIII(test1) << endl; // Expected output: 2
-
-    vector<vector<int>> test2 = {{1, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 2}};
-    cout << uniquePathsIII(test2) << endl; // Expected output: 4
-
-    vector<vector<int>> test3 = {{0, 1}, {2, 0}};
-    cout << uniquePathsIII(test3) << endl; // Expected output: 0
+    cout<<makeSmallestPalindrome("egcfe")<<endl;
+    cout<<makeSmallestPalindrome("abcd")<<endl;
+    cout<<makeSmallestPalindrome("seven")<<endl;
 
     /************************************************************************************/
 
