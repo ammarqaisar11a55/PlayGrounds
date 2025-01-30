@@ -122,30 +122,23 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 
 int minSteps(string s, string t)
 {
-    sort(s.begin(), s.end());
-    sort(t.begin(), t.end());
+    vector<int>Freq(26,0);
 
-    if (s == t)
-        return 0;
+    for(char c : s)
+    Freq[c-'a']++;
 
-    multiset<char>S_Letters(s.begin(),s.end());
-    multiset<char>T_Letters(t.begin(),t.end());
+    for(char c : t)
+    Freq[c-'a']--;
 
     int res = 0;
 
-    for(auto it = S_Letters.begin(); it!=S_Letters.end();it++)
+    for(int i = 0; i < 26; i++)
     {
-        if(T_Letters.find(*it)!=T_Letters.end())
-        {
-            T_Letters.erase(*it);
-        }
-        else
-        {
-            res++;
-        }
+        res += abs(Freq[i]);
     }
 
-    return res;
+    return res/2;
+
 }
 
 int main()
@@ -157,6 +150,7 @@ int main()
     cout << minSteps("bab", "aba") << endl;
     cout << minSteps("leetcode", "practice") << endl;
     cout << minSteps("anagram", "mangaar") << endl;
+    cout << minSteps("gctcxyuluxjuxnsvmomavutrrfb", "qijrjrhqqjxjtprybrzpyfyqtzf") << endl;
 
     /************************************************************************************/
 
