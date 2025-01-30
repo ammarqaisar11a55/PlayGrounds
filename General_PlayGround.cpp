@@ -117,6 +117,7 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 
 int findTheWinner(int n, int k)
 {
+    
 }
 
 int main()
@@ -125,7 +126,8 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    
+    cout<<findTheWinner(5,2)<<endl;
+    cout<<findTheWinner(6,5)<<endl;
 
     /************************************************************************************/
 
