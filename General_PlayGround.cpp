@@ -120,24 +120,24 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-void DFS(vector<vector<int>> &grid, int i, int j, int ups, int downs, int lefts, int rights, int &Res)
+void DFS(vector<vector<int>> &grid, int i, int j, int EmptyCells, int &Res)
 {
     if (i < 0 || j < 0 || i >= grid.size() || j >= grid[0].size() || grid[i][j] == -1)
         return;
 
     if (grid[i][j] == 2)
     {
-        Res += ups > 0 && downs > 0 && lefts > 0 && rights > 0 ? 1 : 0;
+        Res += EmptyCells == -1 ? 1 : 0;
         return;
     }
 
     int temp = grid[i][j];
     grid[i][j] = -1;
 
-    DFS(grid, i + 1, j, ups, downs + 1, lefts, rights, Res);
-    DFS(grid, i - 1, j, ups + 1, downs, lefts, rights, Res);
-    DFS(grid, i, j - 1, ups, downs, lefts + 1, rights, Res);
-    DFS(grid, i, j + 1, ups, downs, lefts, rights + 1, Res);
+    DFS(grid, i + 1, j, EmptyCells - 1, Res);
+    DFS(grid, i - 1, j, EmptyCells - 1, Res);
+    DFS(grid, i, j - 1, EmptyCells - 1, Res);
+    DFS(grid, i, j + 1, EmptyCells - 1, Res);
 
     grid[i][j] = temp;
 }
@@ -145,6 +145,8 @@ void DFS(vector<vector<int>> &grid, int i, int j, int ups, int downs, int lefts,
 int uniquePathsIII(vector<vector<int>> &grid)
 {
     int Res = 0;
+    int X, Y;
+    int Empty_Cells = 0;
 
     for (int i = 0; i < grid.size(); i++)
     {
@@ -152,11 +154,18 @@ int uniquePathsIII(vector<vector<int>> &grid)
         {
             if (grid[i][j] == 1)
             {
-                DFS(grid, i, j, 0, 0, 0, 0, Res);
-                break;
+                X = i;
+                Y = j;
+            }
+
+            if (grid[i][j] == 0)
+            {
+                Empty_Cells++;
             }
         }
     }
+
+    DFS(grid, X, Y, Empty_Cells, Res);
 
     return Res;
 }
