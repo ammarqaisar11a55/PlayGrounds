@@ -120,37 +120,11 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-int minSteps(string s, string t)
-{
-    vector<int>Freq(26,0);
-
-    for(char c : s)
-    Freq[c-'a']++;
-
-    for(char c : t)
-    Freq[c-'a']--;
-
-    int res = 0;
-
-    for(int i = 0; i < 26; i++)
-    {
-        res += abs(Freq[i]);
-    }
-
-    return res/2;
-
-}
-
 int main()
 {
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-
-    cout << minSteps("bab", "aba") << endl;
-    cout << minSteps("leetcode", "practice") << endl;
-    cout << minSteps("anagram", "mangaar") << endl;
-    cout << minSteps("gctcxyuluxjuxnsvmomavutrrfb", "qijrjrhqqjxjtprybrzpyfyqtzf") << endl;
 
     /************************************************************************************/
 
