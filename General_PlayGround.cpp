@@ -132,10 +132,7 @@ int minSteps(string s, string t)
 
     int res = 0;
 
-    for (int i = 0; i < s.length(); i++)
-    {
-        res += T_Letters.find(s[i]) != T_Letters.end() ? 0 : 1;   
-    }
+    
 
     return res;
 }
