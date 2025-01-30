@@ -129,6 +129,7 @@ int minSteps(string s, string t)
         return 0;
 
     multiset<char>T_Letters(t.begin(),t.end());
+    multiset<char>S_Letters(s.begin(),s.end());
 
     int res = 0;
 
@@ -137,6 +138,7 @@ int minSteps(string s, string t)
         if(T_Letters.find(s[i])==T_Letters.end())
         {
             res++;
+            T_Letters.insert(s[i]);
         }
         else
         {
