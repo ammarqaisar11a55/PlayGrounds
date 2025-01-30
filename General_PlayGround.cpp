@@ -120,19 +120,41 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-int subarraySum(vector<int> nums)
+bool Check(int Number, int Base)
 {
-    int res = 0;
+    string representation;
 
-    for (int i = 0; i < nums.size(); i++)
+    while (Number > 0)
     {
-        for(int j = max(0,i-nums[i]); j <= i; j++)
-        {
-            res += nums[j];
-        }   
+        representation.push_back(Number % Base);
+        Number /= Base;
     }
 
-    return res;
+    int i = 0;
+    int j = representation.size() - 1;
+
+    cout << "Number: " << Number << " -> Base -> " << Base << " -> " << representation << endl;
+
+    while (i < j)
+    {
+        if (representation[i] != representation[j])
+            return false;
+
+        i++;
+        j--;
+    }
+
+    return true;
+}
+
+bool isStrictlyPalindromic(int n)
+{
+
+    for (int i = 2; i <= n - 2; i++)
+        if (!Check(n, i))
+            return false;
+
+    return true;
 }
 
 int main()
@@ -141,8 +163,8 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    cout << subarraySum(vector<int>{2, 3, 1}) << endl;
-    cout << subarraySum(vector<int>{3,1,1,2}) << endl;
+    cout << isStrictlyPalindromic(9) << endl;
+    cout << isStrictlyPalindromic(4) << endl;
 
     /************************************************************************************/
 
