@@ -13,10 +13,10 @@
 #include <list>
 using namespace std;
 
-template<typename T>
+template <typename T>
 void Print(T D)
 {
-    cout<<D<<end;
+    cout << D << end;
 }
 
 void PrintVector(vector<string> a)
@@ -120,12 +120,30 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
+int subarraySum(vector<int> nums)
+{
+    int res = 0;
+
+    for (int i = 0; i < nums.size(); i++)
+    {
+        for(int j = max(0,i-nums[i]); j <= i; j++)
+        {
+            res += nums[j];
+        }   
+    }
+
+    return res;
+}
+
 int main()
 {
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    
+
+    cout << subarraySum(vector<int>{2, 3, 1}) << endl;
+    cout << subarraySum(vector<int>{3,1,1,2}) << endl;
+
     /************************************************************************************/
 
     // Record the end time
