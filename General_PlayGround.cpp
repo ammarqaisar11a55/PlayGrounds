@@ -126,7 +126,7 @@ bool Check(int Number, int Base)
 
     while (Number > 0)
     {
-        representation.push_back(Number % Base);
+        representation+= to_string(Number % Base);
         Number /= Base;
     }
 
@@ -150,10 +150,9 @@ bool Check(int Number, int Base)
 bool isStrictlyPalindromic(int n)
 {
 
-    for (int i = 2; i <= n - 2; i++)
-        if (!Check(n, i))
-            return false;
-
+    Check(10,8);    
+    Check(9,7);    
+    
     return true;
 }
 
