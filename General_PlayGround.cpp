@@ -127,6 +127,10 @@ void DFS(vector<vector<int>> Grid, int i, int j, int Count_Ones, int &Res, bool 
 
     if (Grid[i][j] == 0 && Changed_Zero_To_One == true)
         return;
+    else
+    {
+        
+    }
 
     int temp = Grid[i][j];
 
@@ -140,7 +144,7 @@ void DFS(vector<vector<int>> Grid, int i, int j, int Count_Ones, int &Res, bool 
         Grid[i][j] = 0;
     }
 
-    Res = max(Res,Count_Ones);
+    Res = max(Res, Count_Ones);
 
     DFS(Grid, i + 1, j, Count_Ones + 1, Res, Changed_Zero_To_One);
     DFS(Grid, i - 1, j, Count_Ones + 1, Res, Changed_Zero_To_One);
@@ -172,7 +176,7 @@ int largestIsland(vector<vector<int>> grid)
         }
     }
 
-    return res - 1;
+    return res;
 }
 
 int main()
