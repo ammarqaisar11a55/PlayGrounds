@@ -127,37 +127,28 @@ void DFS(vector<vector<int>> Grid, int i, int j, int Count_Ones, int &Res, bool 
 
     if (Grid[i][j] == 0)
     {
-        if (Changed_Zero_To_One == true)
-        {
-            // Res = max(Res, Count_Ones);
+        if (Changed_Zero_To_One)
             return;
-        }
-        else
-        {
-            int temp = Grid[i][j];
-            Grid[i][j] = 0;
-
-            DFS(Grid, i + 1, j, Count_Ones + 1, Res, true);
-            DFS(Grid, i - 1, j, Count_Ones + 1, Res, true);
-            DFS(Grid, i, j + 1, Count_Ones + 1, Res, true);
-            DFS(Grid, i, j - 1, Count_Ones + 1, Res, true);
-
-            Grid[i][j] = temp;
-        }
     }
-    else if (Grid[i][j] == 1)
+
+    int temp = Grid[i][j];
+    Grid[i][j] = 0;
+
+    if(temp == 0)
     {
-        int temp = Grid[i][j];
-        Grid[i][j] = 0;
-
-        DFS(Grid, i + 1, j, Count_Ones + 1, Res, false);
-        DFS(Grid, i - 1, j, Count_Ones + 1, Res, false);
-        DFS(Grid, i, j + 1, Count_Ones + 1, Res, false);
-        DFS(Grid, i, j - 1, Count_Ones + 1, Res, false);
-
-        Grid[i][j] = temp;
+        Changed_Zero_To_One  = !Changed_Zero_To_One;
     }
-    Res = max(Res, Count_Ones);
+
+    Res = max(Res,Count_Ones);
+
+    DFS(Grid, i + 1, j, Count_Ones + 1, Res, Changed_Zero_To_One);
+    DFS(Grid, i - 1, j, Count_Ones + 1, Res, Changed_Zero_To_One);
+    DFS(Grid, i, j + 1, Count_Ones + 1, Res, Changed_Zero_To_One);
+    DFS(Grid, i, j - 1, Count_Ones + 1, Res, Changed_Zero_To_One);
+
+    Grid[i][j] = temp;
+
+
 }
 
 int largestIsland(vector<vector<int>> grid)
