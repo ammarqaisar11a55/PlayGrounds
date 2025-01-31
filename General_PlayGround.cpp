@@ -125,13 +125,11 @@ void DFS(vector<vector<int>> Grid, int i, int j, int Count_Ones, int &Res, bool 
     if (i < 0 || j < 0 || i >= Grid.size() || j >= Grid[0].size())
         return;
 
-    Res = max(Res, Count_Ones);
-
     if (Grid[i][j] == 0)
     {
         if (Changed_Zero_To_One == true)
         {
-            Res = max(Res, Count_Ones);
+            // Res = max(Res, Count_Ones);
             return;
         }
         else
@@ -143,7 +141,7 @@ void DFS(vector<vector<int>> Grid, int i, int j, int Count_Ones, int &Res, bool 
             DFS(Grid, i - 1, j, Count_Ones + 1, Res, true);
             DFS(Grid, i, j + 1, Count_Ones + 1, Res, true);
             DFS(Grid, i, j - 1, Count_Ones + 1, Res, true);
-            
+
             Grid[i][j] = temp;
         }
     }
@@ -159,6 +157,7 @@ void DFS(vector<vector<int>> Grid, int i, int j, int Count_Ones, int &Res, bool 
 
         Grid[i][j] = temp;
     }
+    Res = max(Res, Count_Ones);
 }
 
 int largestIsland(vector<vector<int>> grid)
