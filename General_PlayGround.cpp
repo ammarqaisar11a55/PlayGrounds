@@ -131,6 +131,8 @@ int main()
     /************************************** Input Test Cases: **************************/
 
     cout<<largestIsland()<<endl;
+    cout<<largestIsland()<<endl;
+    cout<<largestIsland()<<endl;
 
     /************************************************************************************/
 
