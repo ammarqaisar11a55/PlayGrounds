@@ -136,11 +136,15 @@ void DFS(vector<vector<int>> Grid, int i, int j, int Count_Ones, int &Res, bool 
         }
         else
         {
+            int temp = Grid[i][j];
+            Grid[i][j] = 0;
+
             DFS(Grid, i + 1, j, Count_Ones + 1, Res, true);
             DFS(Grid, i - 1, j, Count_Ones + 1, Res, true);
             DFS(Grid, i, j + 1, Count_Ones + 1, Res, true);
             DFS(Grid, i, j - 1, Count_Ones + 1, Res, true);
-            return;
+            
+            Grid[i][j] = temp;
         }
     }
     else if (Grid[i][j] == 1)
