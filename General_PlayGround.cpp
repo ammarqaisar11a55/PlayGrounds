@@ -140,6 +140,8 @@ void DFS(vector<vector<int>> Grid, int i, int j, int Count_Ones, int &Res, bool 
         Grid[i][j] = 0;
     }
 
+    Res = max(Res,Count_Ones);
+
     DFS(Grid, i + 1, j, Count_Ones + 1, Res, Changed_Zero_To_One);
     DFS(Grid, i - 1, j, Count_Ones + 1, Res, Changed_Zero_To_One);
     DFS(Grid, i, j + 1, Count_Ones + 1, Res, Changed_Zero_To_One);
@@ -170,7 +172,7 @@ int largestIsland(vector<vector<int>> grid)
         }
     }
 
-    return res;
+    return res - 1;
 }
 
 int main()
