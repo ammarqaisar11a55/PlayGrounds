@@ -119,25 +119,8 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 /*********************************************************************************************************/
-
-string makeSmallestPalindrome(string s)
+int largestIsland(vector<vector<int>> &grid)
 {
-    int st = 0;
-    int en = s.length() - 1;
-
-    while(st<en)
-    {
-        if(s[st] != s[en])
-        {
-            char smaller = min(s[st],s[en]);
-            s[st] = s[en] = smaller; 
-        }
-
-        st++;
-        en--;
-    }
-
-    return s;
 }
 
 int main()
@@ -145,10 +128,6 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-
-    cout << makeSmallestPalindrome("egcfe") << endl;
-    cout << makeSmallestPalindrome("abcd") << endl;
-    cout << makeSmallestPalindrome("seven") << endl;
 
     /************************************************************************************/
 
