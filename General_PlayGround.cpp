@@ -122,20 +122,37 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 
 void DFS(vector<vector<int>> Grid, int i, int j, int Count_Ones, int &Res, bool Changed_Zero_To_One)
 {
-    if (i < 0 || j < 0 || i >= Grid.size() || j >= Grid[0].size() || (Grid[i][j] == 0))
+    if (i < 0 || j < 0 || i >= Grid.size() || j >= Grid[0].size())
         return;
 
-    Res = max(Res, Count_Ones);
+    if (Grid[i][j] == 0 && Changed_Zero_To_One == true)
+        return;
 
     int temp = Grid[i][j];
-    Grid[i][j] = 0;
+
+    if (Grid[i][j] == 0)
+    {
+        Changed_Zero_To_One = true;
+        Grid[i][j] = 1;
+    }
+    else
+    {
+        Grid[i][j] = 0;
+    }
 
     DFS(Grid, i + 1, j, Count_Ones + 1, Res, Changed_Zero_To_One);
     DFS(Grid, i - 1, j, Count_Ones + 1, Res, Changed_Zero_To_One);
     DFS(Grid, i, j + 1, Count_Ones + 1, Res, Changed_Zero_To_One);
     DFS(Grid, i, j - 1, Count_Ones + 1, Res, Changed_Zero_To_One);
 
-    Grid[i][j] = temp;
+    if (Changed_Zero_To_One)
+    {
+        Grid[i][j] = 0;
+    }
+    else
+    {
+        Grid[i][j] = temp;
+    }
 }
 
 int largestIsland(vector<vector<int>> grid)
@@ -146,12 +163,9 @@ int largestIsland(vector<vector<int>> grid)
     {
         for (int j = 0; j < grid[i].size(); j++)
         {
-            if (grid[i][j] == 0)
+            if (grid[i][j] == 1)
             {
-                int temp = grid[i][j];
-                grid[i][j] = 1;
                 DFS(grid, i, j, 1, res, false);
-                grid[i][j] = temp;
             }
         }
     }
