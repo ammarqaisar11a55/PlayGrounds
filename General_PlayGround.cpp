@@ -125,18 +125,35 @@ void DFS(vector<vector<int>> Grid, int i, int j, int Count_Ones, int &Res, bool 
     if (i < 0 || j < 0 || i >= Grid.size() || j >= Grid[0].size())
         return;
 
-    Res = max(Res,Count_Ones);
+    Res = max(Res, Count_Ones);
 
     if (Grid[i][j] == 0)
     {
-
+        if (Changed_Zero_To_One == true)
+        {
+            Res = max(Res, Count_Ones);
+            return;
+        }
+        else
+        {
+            DFS(Grid, i + 1, j, Count_Ones + 1, Res, true);
+            DFS(Grid, i - 1, j, Count_Ones + 1, Res, true);
+            DFS(Grid, i, j + 1, Count_Ones + 1, Res, true);
+            DFS(Grid, i, j - 1, Count_Ones + 1, Res, true);
+            return;
+        }
     }
     else if (Grid[i][j] == 1)
     {
-        DFS(Grid, i + 1,j,Count_Ones + 1,Res,false);
-        DFS(Grid, i - 1,j,Count_Ones + 1,Res,false);
-        DFS(Grid, i,j + 1,Count_Ones + 1,Res,false);
-        DFS(Grid, i,j - 1,Count_Ones + 1,Res,false);
+        int temp = Grid[i][j];
+        Grid[i][j] = 0;
+
+        DFS(Grid, i + 1, j, Count_Ones + 1, Res, false);
+        DFS(Grid, i - 1, j, Count_Ones + 1, Res, false);
+        DFS(Grid, i, j + 1, Count_Ones + 1, Res, false);
+        DFS(Grid, i, j - 1, Count_Ones + 1, Res, false);
+
+        Grid[i][j] = temp;
     }
 }
 
@@ -144,7 +161,17 @@ int largestIsland(vector<vector<int>> grid)
 {
     int res = 0;
 
-    PrintMatrixVector(grid);
+    for (int i = 0; i < grid.size(); i++)
+    {
+        for (int j = 0; j < grid[i].size(); j++)
+        {
+            if (grid[i][j] == 1)
+            {
+                DFS(grid, i, j, 1, res, false);
+            }
+        }
+    }
+
     return res;
 }
 
