@@ -150,6 +150,7 @@ void DFS(vector<vector<int>> Grid, int i, int j, int Count_Ones, int &Res, bool 
 int largestIsland(vector<vector<int>> grid)
 {
     int res = 0;
+    int Count_Zeros = 0;
 
     for (int i = 0; i < grid.size(); i++)
     {
@@ -159,10 +160,16 @@ int largestIsland(vector<vector<int>> grid)
             {
                 DFS(grid, i, j, 1, res, false);
             }
+            else Count_Zeros++;
         }
     }
 
-    return res;
+    if(Count_Zeros == 0)
+    {
+        return grid.size()*grid.size();
+    }
+
+    return res == 0 ? res + 1 : res;
 }
 
 int main()
@@ -174,6 +181,8 @@ int main()
     cout << largestIsland(vector<vector<int>>{{1, 0}, {0, 1}}) << endl;
     cout << largestIsland(vector<vector<int>>{{1, 1}, {1, 0}}) << endl;
     cout << largestIsland(vector<vector<int>>{{1, 1}, {1, 1}}) << endl;
+    cout << largestIsland(vector<vector<int>>{{0, 0}, {0, 1}}) << endl;
+    cout << largestIsland(vector<vector<int>>{{0,0},{0,0}}) << endl;
 
     /************************************************************************************/
 
