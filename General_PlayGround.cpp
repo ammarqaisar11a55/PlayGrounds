@@ -120,16 +120,20 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-void DFS(vector<vector<int>> Grid, int i, int j, int &Res, bool Changed_Zero_To_One)
+void DFS(vector<vector<int>> Grid, int i, int j, int Count_Ones, int &Res, bool Changed_Zero_To_One)
 {
     if (i < 0 || j < 0 || i >= Grid.size() || j >= Grid[0].size())
         return;
 
+    Res = max(Res,Count_Ones)
+
     if (Grid[i][j] == 0)
     {
+
     }
     else if (Grid[i][j] == 1)
     {
+        DFS()
     }
 }
 
