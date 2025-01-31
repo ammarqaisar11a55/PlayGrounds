@@ -127,16 +127,13 @@ void DFS(vector<vector<int>> Grid, int i, int j, int Count_Ones, int &Res, bool 
 
     if (Grid[i][j] == 0 && Changed_Zero_To_One == true)
         return;
-    else
-    {
-        
-    }
 
-    int temp = Grid[i][j];
+    int temp;
 
     if (Grid[i][j] == 0)
     {
         Changed_Zero_To_One = true;
+        temp = 0;
         Grid[i][j] = 1;
     }
     else
@@ -154,6 +151,7 @@ void DFS(vector<vector<int>> Grid, int i, int j, int Count_Ones, int &Res, bool 
     if (Changed_Zero_To_One)
     {
         Grid[i][j] = 0;
+        Changed_Zero_To_One = false;
     }
     else
     {
