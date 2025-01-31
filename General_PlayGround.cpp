@@ -130,9 +130,9 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    cout<<largestIsland()<<endl;
-    cout<<largestIsland()<<endl;
-    cout<<largestIsland()<<endl;
+    cout<<largestIsland(vector<vector<int>>{[1,0],[0,1]})<<endl;
+    cout<<largestIsland(vector<vector<int>>{})<<endl;
+    cout<<largestIsland(vector<vector<int>>{})<<endl;
 
     /************************************************************************************/
 
