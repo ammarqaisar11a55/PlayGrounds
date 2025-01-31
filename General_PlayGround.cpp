@@ -146,9 +146,12 @@ int largestIsland(vector<vector<int>> grid)
     {
         for (int j = 0; j < grid[i].size(); j++)
         {
-            if (grid[i][j] == 1)
+            if (grid[i][j] == 0)
             {
+                int temp = grid[i][j];
+                grid[i][j] = 1;
                 DFS(grid, i, j, 1, res, false);
+                grid[i][j] = temp;
             }
         }
     }
