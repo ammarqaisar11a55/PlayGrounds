@@ -139,6 +139,7 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 
 vector<int> findThePrefixCommonArray(vector<int> A, vector<int> B)
 {
+    return {};
 }
 
 int main()
