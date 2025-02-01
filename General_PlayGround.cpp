@@ -137,13 +137,18 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-
+vector<int> findThePrefixCommonArray(vector<int> A, vector<int> B)
+{
+}
 
 int main()
 {
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
+
+    PrintVector(findThePrefixCommonArray(vector<int>{1,3,2,4},vector<int>{3,1,2,4}));
+    PrintVector(findThePrefixCommonArray(vector<int>{2,3,1},vector<int>{3,1,2}));
 
     /************************************************************************************/
 
@@ -157,10 +162,3 @@ int main()
 
     return 0;
 }
-
-/*Dry Run:*/
-// C: 1    RES: 1
-// C: 10    RES: 1,10
-// C: 11    RES: 1,10,11
-// C: 1    RES: 1
-// C: 1    RES: 1
