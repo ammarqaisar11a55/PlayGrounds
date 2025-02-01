@@ -122,7 +122,31 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 
 vector<int> pivotArray(vector<int> nums, int pivot)
 {
-    int 
+    int n = nums.size();
+    int low = 0, high = n - 1;
+
+    // First pass: Move elements < pivot to the beginning
+    for (int i = 0; i < n; i++)
+    {
+        if (nums[i] < pivot)
+        {
+            swap(nums[i], nums[low]);
+            low++;
+        }
+    }
+
+    // Second pass: Move elements > pivot to the end
+    int mid = low; // Start placing greater elements after pivot elements
+    for (int i = n - 1; i >= mid; i--)
+    {
+        if (nums[i] > pivot)
+        {
+            swap(nums[i], nums[high]);
+            high--;
+        }
+    }
+
+    return nums;
 }
 
 int main()
