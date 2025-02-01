@@ -122,7 +122,29 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 
 vector<int> pivotArray(vector<int> nums, int pivot)
 {
-    return nums;
+    vector<int> Res;
+    int Count_Elements_Equal_to_Pivot = count(nums.begin(), nums.end(), pivot);
+
+    for (int i = 0; i < nums.size(); i++)
+    {
+        if (nums[i] < pivot)
+        {
+            Res.push_back(nums[i]);
+        }
+    }
+
+    for (int i = 0; i < Count_Elements_Equal_to_Pivot; i++)
+        Res.push_back(pivot);
+
+    for (int i = 0; i < nums.size(); i++)
+    {
+        if (nums[i] > pivot)
+        {
+            Res.push_back(nums[i]);
+        }
+    }
+
+    return Res;
 }
 
 int main()
@@ -131,8 +153,8 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    PrintVector(pivotArray(vector<int>{9,12,5,10,14,3,10},10));
-    PrintVector(pivotArray(vector<int>{-3,4,3,2},2));
+    PrintVector(pivotArray(vector<int>{9, 12, 5, 10, 14, 3, 10}, 10));
+    PrintVector(pivotArray(vector<int>{-3, 4, 3, 2}, 2));
 
     /************************************************************************************/
 
