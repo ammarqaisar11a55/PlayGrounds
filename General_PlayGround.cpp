@@ -120,13 +120,19 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-
+vector<int> pivotArray(vector<int> nums, int pivot)
+{
+    return nums;
+}
 
 int main()
 {
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
+
+    PrintVector(pivotArray(vector<int>{9,12,5,10,14,3,10},10));
+    PrintVector(pivotArray(vector<int>{-3,4,3,2},2));
 
     /************************************************************************************/
 
