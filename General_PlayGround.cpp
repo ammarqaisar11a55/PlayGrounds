@@ -141,7 +141,10 @@ vector<int> findThePrefixCommonArray(vector<int> A, vector<int> B)
 {
     vector<int>Res;
 
-    
+    for(int i = 0; i < A.size(); i++)
+    {
+        
+    }
 
     return Res;
 }
