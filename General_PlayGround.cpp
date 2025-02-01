@@ -137,48 +137,13 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-bool Ans(vector<int> nums)
-{
-    sort(nums.begin(), nums.end());
 
-    int Prev_diff = nums[1] - nums[0];
-
-    for (int i = 0; i < nums.size() - 1; i++)
-    {
-        if (nums[i + 1] - nums[i] != Prev_diff)
-            return false;
-    }
-
-    return true;
-}
-
-vector<bool> checkArithmeticSubarrays(vector<int> nums, vector<int> l, vector<int> r)
-{
-    vector<bool> Res;
-
-    for (int i = 0; i < l.size(); i++)
-    {
-        vector<int> Sub_Array;
-
-        for (int j = l[i]; j <= r[i]; j++)
-        {
-            Sub_Array.push_back(nums[j]);
-        }
-
-        Res.push_back(Ans(Sub_Array));
-    }
-
-    return Res;
-}
 
 int main()
 {
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-
-    PrintVector(checkArithmeticSubarrays(vector<int>{4, 6, 5, 9, 3, 7}, vector<int>{0, 0, 2}, vector<int>{2, 3, 5}));
-    PrintVector(checkArithmeticSubarrays(vector<int>{-12, -9, -3, -12, -6, 15, 20, -25, -20, -15, -10}, vector<int>{0, 1, 6, 4, 8, 7}, vector<int>{4, 4, 9, 7, 9, 10}));
 
     /************************************************************************************/
 
