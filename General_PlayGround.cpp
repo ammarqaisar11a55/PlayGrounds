@@ -137,49 +137,6 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-string smallestEquivalentString(string s1, string s2, string baseStr)
-{
-    int id = 0;
-    unordered_map<char, int> Characterd_Ids;
-    unordered_map<int, char> Ids_with_Characters_group;
-
-    for (int i = 0; i < s1.length(); i++)
-    {
-        char s1_character = s1[i];
-        char s2_character = s2[i];
-
-        
-
-        
-        if(Ids_with_Characters_group.find(id)!=Ids_with_Characters_group.end())
-        {
-            id++;
-        }
-    }
-
-    string res;
-
-    for (auto X : Ids_with_Characters_group)
-    {
-        cout << X.first << ": "<<X.second;
-
-        cout << endl;
-    }
-
-    for (int i = 0; i < baseStr.length(); i++)
-    {
-        if (Characterd_Ids.find(baseStr[i]) != Characterd_Ids.end())
-        {
-            int Char_ID = Characterd_Ids[baseStr[i]];
-            char Character_to_append = Ids_with_Characters_group[Char_ID];
-            res.push_back(Character_to_append);
-        }
-        else
-            res.push_back(baseStr[i]);
-    }
-
-    return res;
-}
 
 int main()
 {
