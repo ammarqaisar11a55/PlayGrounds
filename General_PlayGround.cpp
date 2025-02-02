@@ -141,12 +141,12 @@ int smallestNumber(int n)
 {
     int res = 0;
 
-    for(int i = n; i<=1000; i++)
+    for(int i = 1; i<=1000; i++)
     {
         if(i&1)
         {
             int Ones = __builtin_popcount(i);
-            int total_bits = sizeof(i)*32;
+            int total_bits = sizeof(i)*8;
             if(total_bits - Ones == 0)
             {
                 res = i;
