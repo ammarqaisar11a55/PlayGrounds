@@ -142,6 +142,8 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
     int id = 0;
     unordered_map<char, int> Characterd_Ids;
     unordered_map<int, char> Ids_with_Characters_group;
+    unordered_set<int>Used_Ids;
+    
 
     for (int i = 0; i < s1.length(); i++)
     {
