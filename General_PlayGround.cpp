@@ -141,7 +141,7 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
 {
     int id = 0;
     unordered_map<char, int> Characterd_Ids;
-    unordered_map<int, priority_queue<char, vector<char>, greater<char>>> Ids_with_Characters_group;
+    unordered_map<int, char> Ids_with_Characters_group;
 
     for (int i = 0; i < s1.length(); i++)
     {
@@ -176,33 +176,45 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
             }
         }
 
-        Ids_with_Characters_group[Characterd_Ids[s1_character]].push(s1_character);
-        Ids_with_Characters_group[Characterd_Ids[s2_character]].push(s2_character);
+        // Ids_with_Characters_group[Characterd_Ids[s1_character]].push(s1_character);
+        // Ids_with_Characters_group[Characterd_Ids[s2_character]].push(s2_character);
+
+        if (Ids_with_Characters_group.find(Characterd_Ids[s1_character]) == Ids_with_Characters_group.end())
+        {
+            Ids_with_Characters_group[Characterd_Ids[s1_character]] = s1_character;
+        }
+        else
+        {
+            Ids_with_Characters_group[Characterd_Ids[s1_character]] = min(s1_character, Ids_with_Characters_group[Characterd_Ids[s1_character]]);
+        }
+
+        if (Ids_with_Characters_group.find(Characterd_Ids[s2_character]) == Ids_with_Characters_group.end())
+        {
+            Ids_with_Characters_group[Characterd_Ids[s2_character]] = s2_character;
+        }
+        else
+        {
+            Ids_with_Characters_group[Characterd_Ids[s2_character]] = min(s2_character, Ids_with_Characters_group[Characterd_Ids[s2_character]]);
+        }
 
         id++;
     }
 
     string res;
 
-    // for (auto X : Ids_with_Characters_group)
-    // {
-    //     cout << X.first << ": ";
+    for (auto X : Ids_with_Characters_group)
+    {
+        cout << X.first << ": "<<X.second;
 
-    //     while (X.second.empty() == false)
-    //     {
-    //         cout << X.second.top() << " ";
-    //         X.second.pop();
-    //     }
-
-    //     cout << endl;
-    // }
+        cout << endl;
+    }
 
     for (int i = 0; i < baseStr.length(); i++)
     {
         if (Characterd_Ids.find(baseStr[i]) != Characterd_Ids.end())
         {
             int Char_ID = Characterd_Ids[baseStr[i]];
-            char Character_to_append = Ids_with_Characters_group[Char_ID].top();
+            char Character_to_append = Ids_with_Characters_group[Char_ID];
             res.push_back(Character_to_append);
         }
         else
