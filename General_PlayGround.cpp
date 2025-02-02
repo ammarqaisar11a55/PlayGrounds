@@ -137,26 +137,22 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-int smallestNumber(int n)
+string findValidPair(string s)
 {
-    int res = 0;
+    unordered_map<char, int> mp;
 
-    for(int i = 1; i<=1000; i++)
+    for (char c : s)
+        mp[c]++;
+
+    for (int i = 0; i < s.length() - 1; i++)
     {
-        if(i&1)
+        if (s[i] != s[i + 1])
         {
-            int Ones = __builtin_popcount(i);
-            int total_bits = sizeof(i)*8;
-            if(total_bits - Ones == 0)
-            {
-                res = i;
-                break;
-            }
+            
         }
     }
 
-    return res;
-
+    return "";
 }
 
 int main()
@@ -165,9 +161,9 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    cout<<(smallestNumber(5))<<endl;
-    cout<<(smallestNumber(10))<<endl;
-    cout<<(smallestNumber(3))<<endl;
+    cout << findValidPair("2523533") << endl;
+    cout << findValidPair("221") << endl;
+    cout << findValidPair("22s") << endl;
 
     /************************************************************************************/
 
