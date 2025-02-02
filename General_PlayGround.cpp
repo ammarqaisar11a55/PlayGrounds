@@ -146,7 +146,7 @@ int smallestNumber(int n)
         if(i&1)
         {
             int Ones = __builtin_popcount(i);
-            int total_bits = sizeof(i)*8;
+            int total_bits = sizeof(i)*32;
             if(total_bits - Ones == 0)
             {
                 res = i;
@@ -164,6 +164,10 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
+
+    cout<<(smallestNumber(5))<<endl;
+    cout<<(smallestNumber(10))<<endl;
+    cout<<(smallestNumber(3))<<endl;
 
     /************************************************************************************/
 
