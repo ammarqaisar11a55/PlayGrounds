@@ -150,6 +150,14 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
 
         if (s1_character == s2_character)
         {
+            if (Characterd_Ids.find(s1_character) == Characterd_Ids.end())
+            {
+                Characterd_Ids[s1_character] = id;
+            }
+            else
+            {
+                Characterd_Ids[Characterd_Ids[s1_character]] = s1_character;
+            }
         }
         else
         {
@@ -161,7 +169,7 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
             {
                 Characterd_Ids[s1_character] = Characterd_Ids[s2_character];
             }
-            else
+            else if (Characterd_Ids.find(s1_character) == Characterd_Ids.end() && Characterd_Ids.find(s2_character) == Characterd_Ids.end())
             {
                 Characterd_Ids[s1_character] = id;
                 Characterd_Ids[s2_character] = id;
@@ -176,18 +184,18 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
 
     string res;
 
-    for (auto X : Ids_with_Characters_group)
-    {
-        cout << X.first << ": ";
+    // for (auto X : Ids_with_Characters_group)
+    // {
+    //     cout << X.first << ": ";
 
-        while (X.second.empty() == false)
-        {
-            cout << X.second.top() << " ";
-            X.second.pop();
-        }
+    //     while (X.second.empty() == false)
+    //     {
+    //         cout << X.second.top() << " ";
+    //         X.second.pop();
+    //     }
 
-        cout << endl;
-    }
+    //     cout << endl;
+    // }
 
     for (int i = 0; i < baseStr.length(); i++)
     {
