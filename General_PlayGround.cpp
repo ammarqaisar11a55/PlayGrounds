@@ -153,7 +153,7 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
             if (Characterd_Ids.find(s1_character) == Characterd_Ids.end())
             {
                 Characterd_Ids[s1_character] = id;
-             }
+            }
             // else
             // {
             //     Characterd_Ids[Characterd_Ids[s1_character]] = s1_character;
