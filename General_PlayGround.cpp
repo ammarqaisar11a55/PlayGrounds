@@ -137,13 +137,33 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
+int smallestNumber(int n)
+{
+    int res = 0;
+
+    for(int i = n; i<=1000; i++)
+    {
+        if(i&1)
+        {
+            int Ones = __builtin_popcount(i);
+            int total_bits = sizeof(i)*8;
+            if(total_bits - Ones == 0)
+            {
+                res = i;
+                break;
+            }
+        }
+    }
+
+    return res;
+
+}
 
 int main()
 {
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-
 
     /************************************************************************************/
 
