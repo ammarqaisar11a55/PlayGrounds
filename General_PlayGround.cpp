@@ -144,9 +144,6 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    cout << smallestEquivalentString("parker", "morris", "parser") << endl;
-    cout << smallestEquivalentString("hello", "world", "hold") << endl;
-    cout << smallestEquivalentString("leetcode", "programs", "sourcecode") << endl;
 
     /************************************************************************************/
 
