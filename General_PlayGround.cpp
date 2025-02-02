@@ -140,24 +140,24 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 string smallestEquivalentString(string s1, string s2, string baseStr)
 {
     int id = 0;
-    unordered_map<char,int>Characterd_Ids;
-    unordered_map<int,priority_queue<char,vector<char>,greater<char>>>Ids_with_Characters_group;
+    unordered_map<char, int> Characterd_Ids;
+    unordered_map<int, priority_queue<char, vector<char>, greater<char>>> Ids_with_Characters_group;
 
-    for(int i = 0; i < s1.length(); i++)
+    for (int i = 0; i < s1.length(); i++)
     {
         char s1_character = s1[i];
         char s2_character = s2[i];
-        
-        if(Characterd_Ids.find(s1_character) == Characterd_Ids.end())
+
+        if (Characterd_Ids.find(s1_character) == Characterd_Ids.end())
         {
             Characterd_Ids[s1_character] = id;
         }
-        
-        if(Characterd_Ids.find(s2_character) == Characterd_Ids.end())
+
+        if (Characterd_Ids.find(s2_character) == Characterd_Ids.end())
         {
             Characterd_Ids[s2_character] = id;
         }
-        
+
         Ids_with_Characters_group[Characterd_Ids[s1_character]].push(s1_character);
         Ids_with_Characters_group[Characterd_Ids[s2_character]].push(s2_character);
 
@@ -166,21 +166,44 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
 
     string res;
 
-    for(auto X : Ids_with_Characters_group)
+    for (auto X : Ids_with_Characters_group)
     {
-        cout<<X.first<<": ";
+        cout << X.first << ": ";
 
-        while(X.second.empty() == false)
+        while (X.second.empty() == false)
         {
-            cout<<X.second.top()<<" ";
+            cout << X.second.top() << " ";
             X.second.pop();
         }
 
-        cout<<endl;
+        cout << endl;
     }
 
-
     return res;
+}
+
+int maxDifference(string s)
+{
+    int even = INT_MAX;
+    int odd = INT_MIN;
+
+    unordered_map<char,int>mp;
+
+    for(char c : s)
+    {
+        mp[c]++;
+    }
+
+    for(auto x : mp)
+    {
+        if(x.second&1)
+        {
+            odd = max(odd,x.second);
+        }
+        else even = min(even,x.second);
+    }
+
+    return odd - even;
 }
 
 int main()
@@ -189,9 +212,12 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    cout<<smallestEquivalentString("parker","morris","parser")<<endl;
-    cout<<smallestEquivalentString("hello","world","hold")<<endl;
-    cout<<smallestEquivalentString("leetcode","programs","sourcecode")<<endl;
+    cout << smallestEquivalentString("parker", "morris", "parser") << endl;
+    cout << smallestEquivalentString("hello", "world", "hold") << endl;
+    cout << smallestEquivalentString("leetcode", "programs", "sourcecode") << endl;
+
+    cout<<maxDifference("aaaaabbc")<<endl;
+    cout<<maxDifference("abcabcab")<<endl;
 
     /************************************************************************************/
 
