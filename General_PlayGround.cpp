@@ -142,7 +142,6 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
     int id = 0;
     unordered_map<char, int> Characterd_Ids;
     unordered_map<int, char> Ids_with_Characters_group;
-    
 
     for (int i = 0; i < s1.length(); i++)
     {
@@ -150,8 +149,10 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
         char s2_character = s2[i];
 
         
-
-        id++;
+        if(Ids_with_Characters_group.find(id)!=Ids_with_Characters_group.end())
+        {
+            id++;
+        }
     }
 
     string res;
