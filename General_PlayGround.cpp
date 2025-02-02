@@ -142,7 +142,6 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
     int id = 0;
     unordered_map<char, int> Characterd_Ids;
     unordered_map<int, char> Ids_with_Characters_group;
-    unordered_set<int>Used_Ids;
     
 
     for (int i = 0; i < s1.length(); i++)
@@ -150,51 +149,7 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
         char s1_character = s1[i];
         char s2_character = s2[i];
 
-        if (s1_character == s2_character)
-        {
-            if (Characterd_Ids.find(s1_character) == Characterd_Ids.end())
-            {
-                Characterd_Ids[s1_character] = id;
-            }
-            // else
-            // {
-            //     Characterd_Ids[Characterd_Ids[s1_character]] = s1_character;
-            // }
-        }
-        else
-        {
-            if (Characterd_Ids.find(s1_character) != Characterd_Ids.end() && Characterd_Ids.find(s2_character) == Characterd_Ids.end())
-            {
-                Characterd_Ids[s2_character] = Characterd_Ids[s1_character];
-            }
-            else if (Characterd_Ids.find(s1_character) == Characterd_Ids.end() && Characterd_Ids.find(s2_character) != Characterd_Ids.end())
-            {
-                Characterd_Ids[s1_character] = Characterd_Ids[s2_character];
-            }
-            else if (Characterd_Ids.find(s1_character) == Characterd_Ids.end() && Characterd_Ids.find(s2_character) == Characterd_Ids.end())
-            {
-                Characterd_Ids[s1_character] = id;
-                Characterd_Ids[s2_character] = id;
-            }
-        }
-
-        if (Ids_with_Characters_group.find(Characterd_Ids[s1_character]) == Ids_with_Characters_group.end())
-        {
-            Ids_with_Characters_group[Characterd_Ids[s1_character]] = s1_character;
-        }
-        else
-        {
-            Ids_with_Characters_group[Characterd_Ids[s1_character]] = min(s1_character, Ids_with_Characters_group[Characterd_Ids[s1_character]]);
-        }
-
-        if (Ids_with_Characters_group.find(Characterd_Ids[s2_character]) == Ids_with_Characters_group.end())
-        {
-            Ids_with_Characters_group[Characterd_Ids[s2_character]] = s2_character;
-        }
-        else
-        {
-            Ids_with_Characters_group[Characterd_Ids[s2_character]] = min(s2_character, Ids_with_Characters_group[Characterd_Ids[s2_character]]);
-        }
+        
 
         id++;
     }
