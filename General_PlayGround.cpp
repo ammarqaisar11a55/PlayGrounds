@@ -149,6 +149,8 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
         char s2_character = s2[i];
 
         
+
+        
         if(Ids_with_Characters_group.find(id)!=Ids_with_Characters_group.end())
         {
             id++;
