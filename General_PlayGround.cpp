@@ -148,14 +148,24 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
         char s1_character = s1[i];
         char s2_character = s2[i];
 
-        if (Characterd_Ids.find(s1_character) == Characterd_Ids.end())
+        if (s1_character == s2_character)
         {
-            Characterd_Ids[s1_character] = id;
         }
-
-        if (Characterd_Ids.find(s2_character) == Characterd_Ids.end())
+        else
         {
-            Characterd_Ids[s2_character] = id;
+            if (Characterd_Ids.find(s1_character) != Characterd_Ids.end() && Characterd_Ids.find(s2_character) == Characterd_Ids.end())
+            {
+                Characterd_Ids[s2_character] = Characterd_Ids[s1_character];
+            }
+            else if (Characterd_Ids.find(s1_character) == Characterd_Ids.end() && Characterd_Ids.find(s2_character) != Characterd_Ids.end())
+            {
+                Characterd_Ids[s1_character] = Characterd_Ids[s2_character];
+            }
+            else
+            {
+                Characterd_Ids[s1_character] = id;
+                Characterd_Ids[s2_character] = id;
+            }
         }
 
         Ids_with_Characters_group[Characterd_Ids[s1_character]].push(s1_character);
@@ -179,31 +189,19 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
         cout << endl;
     }
 
-    return res;
-}
-
-int maxDifference(string s)
-{
-    int even = INT_MAX;
-    int odd = INT_MIN;
-
-    unordered_map<char,int>mp;
-
-    for(char c : s)
+    for (int i = 0; i < baseStr.length(); i++)
     {
-        mp[c]++;
-    }
-
-    for(auto x : mp)
-    {
-        if(x.second&1)
+        if (Characterd_Ids.find(baseStr[i]) != Characterd_Ids.end())
         {
-            odd = max(odd,x.second);
+            int Char_ID = Characterd_Ids[baseStr[i]];
+            char Character_to_append = Ids_with_Characters_group[Char_ID].top();
+            res.push_back(Character_to_append);
         }
-        else even = min(even,x.second);
+        else
+            res.push_back(baseStr[i]);
     }
 
-    return odd - even;
+    return res;
 }
 
 int main()
@@ -215,9 +213,6 @@ int main()
     cout << smallestEquivalentString("parker", "morris", "parser") << endl;
     cout << smallestEquivalentString("hello", "world", "hold") << endl;
     cout << smallestEquivalentString("leetcode", "programs", "sourcecode") << endl;
-
-    cout<<maxDifference("aaaaabbc")<<endl;
-    cout<<maxDifference("abcabcab")<<endl;
 
     /************************************************************************************/
 
