@@ -176,9 +176,6 @@ string smallestEquivalentString(string s1, string s2, string baseStr)
             }
         }
 
-        // Ids_with_Characters_group[Characterd_Ids[s1_character]].push(s1_character);
-        // Ids_with_Characters_group[Characterd_Ids[s2_character]].push(s2_character);
-
         if (Ids_with_Characters_group.find(Characterd_Ids[s1_character]) == Ids_with_Characters_group.end())
         {
             Ids_with_Characters_group[Characterd_Ids[s1_character]] = s1_character;
