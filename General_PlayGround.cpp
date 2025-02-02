@@ -139,6 +139,7 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 
 string smallestEquivalentString(string s1, string s2, string baseStr)
 {
+    return min(s1,min(s2,baseStr));
 }
 
 int main()
@@ -147,8 +148,9 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    PrintVector(findThePrefixCommonArray(vector<int>{1, 3, 2, 4}, vector<int>{3, 1, 2, 4}));
-    PrintVector(findThePrefixCommonArray(vector<int>{2, 3, 1}, vector<int>{3, 1, 2}));
+    cout<<smallestEquivalentString("parker","morris","parser")<<endl;
+    cout<<smallestEquivalentString("hello","world","hold")<<endl;
+    cout<<smallestEquivalentString("leetcode","programs","sourcecode")<<endl;
 
     /************************************************************************************/
 
