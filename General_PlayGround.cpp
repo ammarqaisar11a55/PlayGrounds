@@ -137,11 +137,9 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-
-
-int smallestNumber(int n, int t)
+int minOperations(vector<int> nums)
 {
-    
+
 }
 
 int main()
@@ -150,8 +148,8 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    cout<<smallestNumber(10,2)<<endl;
-    cout<<smallestNumber(15,3)<<endl;
+    cout << smallestNumber(10, 2) << endl;
+    cout << smallestNumber(15, 3) << endl;
 
     /************************************************************************************/
 
