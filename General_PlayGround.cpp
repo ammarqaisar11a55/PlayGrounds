@@ -139,51 +139,7 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 
 int minOperations(vector<int> nums)
 {
-    unordered_map<int, int> Mp;
-
-    for (int a : nums)
-        Mp[a]++;
-
-    int operations = 0;
-    priority_queue<int, vector<int>, greater<int>> pq;
-
-    for (auto x : Mp)
-    {
-        pq.push(x.second);
-    }
-
-    while (!pq.empty())
-    {
-        if (pq.top() == 1)
-        {
-            return -1;
-        }
-
-        int Top_Freq = pq.top();
-        pq.pop();
-
-        if (Top_Freq % 3 == 0)
-        {
-            operations += 1;
-            Top_Freq -= 3;
-        }
-        else if (Top_Freq % 2 == 0)
-        {
-            operations += 1;
-            Top_Freq -= 2;
-        }
-        else
-        {
-            
-        }
-
-        if (Top_Freq > 0)
-        {
-            pq.push(Top_Freq);
-        }
-    }
-
-    return operations;
+    
 }
 
 int main()
