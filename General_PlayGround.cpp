@@ -145,12 +145,11 @@ int minOperations(vector<int> nums)
         Mp[a]++;
 
     int operations = 0;
-    
-
+    priority_queue<int,vector<int>,greater<int>>pq;
 
     for (auto x : Mp)
     {
-        cout << x.first << " : " << x.second << endl;
+        pq.push(x.second);
     }
     
 
