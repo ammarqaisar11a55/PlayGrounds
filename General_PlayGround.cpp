@@ -145,16 +145,35 @@ int minOperations(vector<int> nums)
         Mp[a]++;
 
     int operations = 0;
-    priority_queue<int,vector<int>,greater<int>>pq;
+    priority_queue<int, vector<int>, greater<int>> pq;
 
     for (auto x : Mp)
     {
         pq.push(x.second);
     }
 
+    while (!pq.empty())
+    {
+        if (pq.top() == 1)
+        {
+            return -1;
+        }
 
-    
-    
+        int Top_Freq = pq.top();
+        pq.pop();
+
+        if(Top_Freq%3 == 0)
+        {
+            operations += Top_Freq/3;
+            Top_Freq = 0;
+        }
+
+
+        if(Top_Freq>0)
+        {
+            pq.push(Top_Freq);
+        }
+    }
 
     return operations;
 }
