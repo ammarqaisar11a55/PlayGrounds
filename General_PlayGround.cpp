@@ -148,8 +148,8 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    cout << smallestNumber(10, 2) << endl;
-    cout << smallestNumber(15, 3) << endl;
+    cout << minOperations(vector<int>{2,3,3,2,2,4,2,3,4}) << endl;
+    cout << minOperations(vector<int>{2,3,3,2,2,4,2,3,4}) << endl;
 
     /************************************************************************************/
 
