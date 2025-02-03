@@ -172,6 +172,10 @@ int minOperations(vector<int> nums)
             operations += 1;
             Top_Freq -= 2;
         }
+        else
+        {
+            
+        }
 
         if (Top_Freq > 0)
         {
