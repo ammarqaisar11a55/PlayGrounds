@@ -139,7 +139,6 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 
 int minOperations(vector<int> nums)
 {
-
 }
 
 int main()
@@ -148,8 +147,8 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    cout << minOperations(vector<int>{2,3,3,2,2,4,2,3,4}) << endl;
-    cout << minOperations(vector<int>{2,3,3,2,2,4,2,3,4}) << endl;
+    cout << minOperations(vector<int>{2, 3, 3, 2, 2, 4, 2, 3, 4}) << endl;
+    cout << minOperations(vector<int>{2, 1, 2, 2, 3, 3}) << endl;
 
     /************************************************************************************/
 
