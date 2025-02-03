@@ -139,6 +139,21 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 
 int minOperations(vector<int> nums)
 {
+    unordered_map<int, int> Mp;
+
+    for (int a : nums)
+        Mp[a]++;
+
+    int operations = 0;
+
+
+    for (auto x : Mp)
+    {
+        cout << x.first << " : " << x.second << endl;
+    }
+    
+
+    return operations;
 }
 
 int main()
