@@ -139,6 +139,10 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 
 int minimumPushes(string word)
 {
+    int res = 0;
+
+
+    return res;
 }
 
 int main()
@@ -146,6 +150,9 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
+
+    cout<<minimumPushes("abcde")<<endl;
+    cout<<minimumPushes("xycdefghij")<<endl;
 
     /************************************************************************************/
 
