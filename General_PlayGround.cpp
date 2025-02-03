@@ -137,14 +137,43 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-int numberOfAlternatingGroups(vector<int> colors)
+int digits_product(int n)
+{
+    int res = 1;
+
+    while (n != 0)
+    {
+        res *= n % 10;
+        n /= 10;
+    }
+
+    return res;
+}
+
+int smallestNumber(int n, int t)
 {
     int res = 0;
 
-    for (int i = 0; i < colors.size(); i++)
+    if (n % 10 == 0)
+        return n;
+
+    for (int i = n; i <= 100; i++)
     {
-        if (colors[i] != colors[(i + 1) % colors.size()] && colors[(i + 1) % colors.size()] != colors[(i + 2) % colors.size()])
-            res++;
+        if (n % 10 == 0)
+        {
+            return i;
+        }
+        else
+        {
+
+            int product = digits_product(i);
+
+            if (product % t == 0)
+            {
+                res = i;
+                break;
+            }
+        }
     }
 
     return res;
@@ -156,8 +185,8 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    cout << numberOfAlternatingGroups(vector<int>{1, 1, 1}) << endl;
-    cout << numberOfAlternatingGroups(vector<int>{0, 1, 0, 0, 1}) << endl;
+    cout<<smallestNumber(10,2)<<endl;
+    cout<<smallestNumber(15,3)<<endl;
 
     /************************************************************************************/
 
