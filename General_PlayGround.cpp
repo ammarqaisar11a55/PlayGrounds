@@ -162,14 +162,18 @@ int minOperations(vector<int> nums)
         int Top_Freq = pq.top();
         pq.pop();
 
-        if(Top_Freq%3 == 0)
+        if (Top_Freq % 3 == 0)
         {
-            operations += Top_Freq/3;
-            Top_Freq = 0;
+            operations += 1;
+            Top_Freq -= 3;
+        }
+        else if (Top_Freq % 2 == 0)
+        {
+            operations += 1;
+            Top_Freq -= 2;
         }
 
-
-        if(Top_Freq>0)
+        if (Top_Freq > 0)
         {
             pq.push(Top_Freq);
         }
@@ -186,6 +190,8 @@ int main()
 
     cout << minOperations(vector<int>{2, 3, 3, 2, 2, 4, 2, 3, 4}) << endl;
     cout << minOperations(vector<int>{2, 1, 2, 2, 3, 3}) << endl;
+    cout << minOperations(vector<int>{14, 12, 14, 14, 12, 14, 14, 12, 12, 12, 12, 14, 14, 12, 14, 14, 14, 12, 12}) << endl;
+    cout << minOperations(vector<int>{19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19}) << endl;
 
     /************************************************************************************/
 
