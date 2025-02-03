@@ -151,6 +151,9 @@ int minOperations(vector<int> nums)
     {
         pq.push(x.second);
     }
+
+
+    
     
 
     return operations;
