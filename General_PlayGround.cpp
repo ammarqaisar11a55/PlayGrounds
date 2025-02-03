@@ -145,6 +145,7 @@ int minOperations(vector<int> nums)
         Mp[a]++;
 
     int operations = 0;
+    
 
 
     for (auto x : Mp)
