@@ -137,35 +137,14 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-int minimumPushes(string word)
+int numberOfAlternatingGroups(vector<int> colors)
 {
     int res = 0;
-    unordered_map<char,int>mp;
-    unordered_map<int,vector<char>>Buttons_with_Mapped_Keys;
-    int Current_button = 2;
 
-
-    int i = 0;
-    while(i < word.size())
+    for (int i = 0; i < colors.size(); i++)
     {
-        int Character = word[i];
-
-        Buttons_with_Mapped_Keys[Current_button].push_back(Character);
-        mp[Character] = Buttons_with_Mapped_Keys[Current_button].size();
-
-        Current_button++;
-
-        if(Current_button > 9)
-        {
-            Current_button = 2;
-        }
-
-        i++;
-    }
-
-    for(char c : word)
-    {
-        res+= mp[c];
+        if (colors[i] != colors[(i + 1) % colors.size()] && colors[(i + 1) % colors.size()] != colors[(i + 2) % colors.size()])
+            res++;
     }
 
     return res;
@@ -177,8 +156,8 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    cout<<minimumPushes("abcde")<<endl;
-    cout<<minimumPushes("xycdefghij")<<endl;
+    cout << numberOfAlternatingGroups(vector<int>{1, 1, 1}) << endl;
+    cout << numberOfAlternatingGroups(vector<int>{0, 1, 0, 0, 1}) << endl;
 
     /************************************************************************************/
 
