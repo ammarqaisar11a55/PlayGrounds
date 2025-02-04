@@ -139,77 +139,27 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 
 int maxAscendingSum(vector<int> nums)
 {
+    int i = 0;
     int res = 0;
-    int sum = 0;
-    int max_elemen = *max_element(nums.begin(), nums.end());
+    int single_max = INT_MIN;
 
-    for (int i = 0; i < nums.size() - 1; i++)
+    while (i < nums.size())
     {
-        if (nums[i] < nums[i + 1])
-        {
-            sum += nums[i];
+        int sum = nums[i];
+        single_max = max(nums[i],single_max);
 
-            if (i == nums.size() - 2)
-            {
-                sum += nums[i + 1];
-            }
-        }
-        else
+        while (i + 1 < nums.size() && nums[i] < nums[i + 1])
         {
-            res = max(res, sum);
-            sum = 0;
+            sum += nums[i + 1];
+            single_max = max(nums[i],single_max);
+            i++;
         }
+        single_max = max(nums[i],single_max);
+        res = max(res, sum);
+        i++;
     }
 
-    res = max(res, sum);
-
-    return max(res, max_elemen);
-}
-
-int Solve(vector<int> nums)
-{
-    unordered_map<int, int> mp;
-
-    for (int c : nums)
-        mp[c]++;
-
-    int operations = 0;
-    priority_queue<int, vector<int>, greater<int>> pq;
-
-    for (auto x : mp)
-        pq.push(x.second);
-
-    while (!pq.empty())
-    {
-        int Top = pq.top();
-        pq.pop();
-
-        if (Top == 1)
-            return -1;
-
-        if (Top % 3 == 0)
-        {
-            operations += 1;
-            Top -= 3;
-        }
-        else if (Top % 2 == 0)
-        {
-            operations += 1;
-            Top -= 2;
-        }
-        else
-        {
-            operations += 1;
-            Top -= 3;
-        }
-
-        if (Top > 0)
-        {
-            pq.push(Top);
-        }
-    }
-
-    return operations;
+    return max(res,single_max);
 }
 
 int main()
@@ -218,16 +168,10 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    // cout << maxAscendingSum(vector<int>{10, 20, 30, 5, 10, 50}) << endl;
-    // cout << maxAscendingSum(vector<int>{10, 20, 30, 40, 50}) << endl;
-    // cout << maxAscendingSum(vector<int>{12, 17, 15, 13, 10, 11, 12}) << endl;
-    // cout << maxAscendingSum(vector<int>{6,10,6}) << endl;
-
-    cout << Solve(vector<int>{2, 3, 3, 2, 2, 4, 2, 3, 4}) << endl;
-    cout << Solve(vector<int>{2, 3, 3, 2, 2, 4, 2, 3, 4}) << endl;
-    cout << Solve(vector<int>{2, 3, 3, 2, 2, 4, 2, 3, 4}) << endl;
-    cout << Solve(vector<int>{2, 1, 2, 2, 3, 3}) << endl;
-    cout << Solve(vector<int>{14,12,14,14,12,14,14,12,12,12,12,14,14,12,14,14,14,12,12}) << endl;
+    cout << maxAscendingSum(vector<int>{10, 20, 30, 5, 10, 50}) << endl;
+    cout << maxAscendingSum(vector<int>{10, 20, 30, 40, 50}) << endl;
+    cout << maxAscendingSum(vector<int>{12, 17, 15, 13, 10, 11, 12}) << endl;
+    cout << maxAscendingSum(vector<int>{6, 10, 6}) << endl;
 
     /************************************************************************************/
 
