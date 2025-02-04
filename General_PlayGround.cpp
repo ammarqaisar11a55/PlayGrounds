@@ -146,12 +146,26 @@ int maxAscendingSum(vector<int> nums)
     {
         if (nums[i] < nums[i + 1])
         {
+            cout<<nums[i]<<" ";
             sum += nums[i];
         }
-        else
+        else 
         {
             res = max(res,sum);
             sum = nums[i];
+        }
+
+        if(i == nums.size() - 2)
+        {
+            if(nums.back() <= nums[nums.size() - 2])
+            {
+                sum = nums.back();
+                res = max(res,sum);
+            }
+            else
+            {
+                sum += nums.back();
+            }
         }
     }
 
