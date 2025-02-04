@@ -137,7 +137,7 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-int minOperations(vector<int> nums)
+int maxAscendingSum(vector<int> nums)
 {
     
 }
@@ -148,10 +148,9 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    cout << minOperations(vector<int>{2, 3, 3, 2, 2, 4, 2, 3, 4}) << endl;
-    cout << minOperations(vector<int>{2, 1, 2, 2, 3, 3}) << endl;
-    cout << minOperations(vector<int>{14, 12, 14, 14, 12, 14, 14, 12, 12, 12, 12, 14, 14, 12, 14, 14, 14, 12, 12}) << endl;
-    cout << minOperations(vector<int>{19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19}) << endl;
+    cout << maxAscendingSum(vector<int>{10, 20, 30, 5, 10, 50}) << endl;
+    cout << maxAscendingSum(vector<int>{10, 20, 30, 40, 50}) << endl;
+    cout << maxAscendingSum(vector<int>{12, 17, 15, 13, 10, 11, 12}) << endl;
 
     /************************************************************************************/
 
