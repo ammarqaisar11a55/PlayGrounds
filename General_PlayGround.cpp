@@ -139,7 +139,25 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 
 int maxAscendingSum(vector<int> nums)
 {
-    
+    int res = 0;
+    int sum = 0;
+
+    for (int i = 0; i < nums.size() - 1; i++)
+    {
+        if (nums[i] < nums[i + 1])
+        {
+            sum += nums[i];
+        }
+        else
+        {
+            res = max(res,sum);
+            sum = nums[i];
+        }
+    }
+
+    res = max(res,sum);
+
+    return res;
 }
 
 int main()
