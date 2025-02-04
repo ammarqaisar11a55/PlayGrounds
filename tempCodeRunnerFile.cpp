@@ -1,1 +1,4 @@
-s2_character
+if(i == nums.size() - 2)
+            // {
+            //     sum += nums[i+1];
+            // }
