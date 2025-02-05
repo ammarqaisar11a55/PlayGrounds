@@ -181,28 +181,70 @@ void Level_Order_Traversal(TreeNode *Root)
     }
 }
 
+void Creation(TreeNode *&Root, int Val, unordered_map<int, int> &Left_Childs, unordered_map<int, int> &Right_Childs)
+{
+    if (Root == nullptr)
+    {
+        TreeNode *Root = new TreeNode(Val);
+    }
+
+    int Left_Child = -1;
+    int Right_Child = -1;
+
+
+}
+
 TreeNode *createBinaryTree(vector<vector<int>> descriptions)
 {
     int Root_Node_Val = -1;
-    unordered_map<int,bool>Childs;
+    unordered_map<int, bool> Childs;
 
-    for(vector<int>Single_Node : descriptions)
+    for (vector<int> Single_Node : descriptions)
     {
         Childs[Single_Node[1]] = Single_Node[2];
     }
 
-    
-    
-    for(vector<int>Single_Node : descriptions)
+    for (vector<int> Single_Node : descriptions)
     {
-        if(Childs.find(Single_Node[0]) == Childs.end())
+        if (Childs.find(Single_Node[0]) == Childs.end())
         {
             Root_Node_Val = Single_Node[0];
             break;
-        }      
+        }
     }
 
-    TreeNode* Root_Node = new TreeNode(Root_Node_Val);
+    TreeNode *Root_Node = new TreeNode(Root_Node_Val);
+
+    unordered_map<int, int> Left_Childs;
+    unordered_map<int, int> Right_Childs;
+
+    for (int i = 0; i < descriptions.size(); i++)
+    {
+        if (descriptions[i][2] == 1)
+        {
+            Left_Childs[descriptions[i][0]] = descriptions[i][1];
+        }
+        else
+        {
+            Right_Childs[descriptions[i][0]] = descriptions[i][1];
+        }
+    }
+
+    cout << "Left: " << endl;
+
+    for (auto x : Left_Childs)
+    {
+        cout << x.first << " -> " << x.second << endl;
+    }
+
+    cout << "Right: " << endl;
+
+    for (auto x : Right_Childs)
+    {
+        cout << x.first << " -> " << x.second << endl;
+    }
+
+
 
     return Root_Node;
 }
