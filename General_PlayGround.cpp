@@ -13,11 +13,7 @@
 #include <list>
 using namespace std;
 
-template <typename T>
-void Print(T D)
-{
-    cout << D << end;
-}
+
 
 void PrintVector(vector<string> a)
 {
@@ -174,7 +170,7 @@ void Level_Order_Traversal(TreeNode *Root)
 
 TreeNode *createBinaryTree(vector<vector<int>> &descriptions)
 {
-    
+
 }
 
 int main()
@@ -182,7 +178,7 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-
+    Level_Order_Traversal(createBinaryTree())
     /************************************************************************************/
 
     // Record the end time
