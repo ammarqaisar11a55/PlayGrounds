@@ -137,6 +137,45 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
+void Level_Order_Traversal(TreeNode *Root)
+{
+    if (Root == NULL)
+        return;
+
+    queue<TreeNode *> Nodes;
+
+    Nodes.push(Root);
+    Nodes.push(NULL);
+
+    while (!Nodes.empty())
+    {
+        TreeNode *Temp = Nodes.front();
+        Nodes.pop();
+
+        if (Temp == NULL)
+        {
+            cout << endl;
+
+            if (!Nodes.empty())
+                Nodes.push(NULL);
+        }
+        else
+        {
+            cout << Temp->Data << " ";
+
+            if (Temp->left != NULL)
+                Nodes.push(Temp->left);
+
+            if (Temp->right != NULL)
+                Nodes.push(Temp->right);
+        }
+    }
+}
+
+TreeNode *createBinaryTree(vector<vector<int>> &descriptions)
+{
+}
+
 int main()
 {
     auto start = chrono::high_resolution_clock::now();
