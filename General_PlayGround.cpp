@@ -185,11 +185,8 @@ void Creation(TreeNode *&Root, int Val, unordered_map<int, int> &Left_Childs, un
 {
     if (Root == nullptr)
     {
-        Root = new TreeNode(Val);
+        Root = new TreeNode(Val);   
     }
-
-    int Left_Child = -1;
-    int Right_Child = -1;
 
     if(Left_Childs.find(Root->val)!=Left_Childs.end())
     {
