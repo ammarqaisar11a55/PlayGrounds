@@ -181,28 +181,28 @@ void Level_Order_Traversal(TreeNode *Root)
     }
 }
 
-void Solve(vector<int> &Candidates, vector<int> Current_Combination, int current_sum, int &target,vector<vector<int>>&Res,int Current_Index)
+void Solve(vector<int> &Candidates, vector<int> Current_Combination, int current_sum, int &target, vector<vector<int>> &Res, int Current_Index)
 {
-    if(current_sum >= target)
+    if (current_sum >= target)
     {
-        if(current_sum == target)
-        Res.push_back(Current_Combination);
+        if (current_sum == target)
+            Res.push_back(Current_Combination);
+
         return;
     }
 
-    for(int i = Current_Index; i < Candidates.size(); i++)
+    for (int i = Current_Index; i < Candidates.size(); i++)
     {
         Current_Combination.push_back(Candidates[i]);
-        Solve(Candidates,Current_Combination,current_sum + Candidates[i],target,Res,i);
+        Solve(Candidates, Current_Combination, current_sum + Candidates[i], target, Res, i);
         Current_Combination.pop_back();
     }
-    
 }
 
-vector<vector<int>> combinationSum(vector<int> candidates, int target)
+vector<vector<int>> combinationSum2(vector<int> candidates, int target)
 {
     vector<vector<int>> Res;
-    Solve(candidates,{},0,target,Res,0);
+    Solve(candidates, {}, 0, target, Res, 0);
     return Res;
 }
 
@@ -211,9 +211,8 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    PrintMatrixVector(combinationSum(vector<int>{2, 3, 6, 7}, 7));
-    PrintMatrixVector(combinationSum(vector<int>{2, 3, 5}, 8));
-    PrintMatrixVector(combinationSum(vector<int>{2}, 1));
+    PrintMatrixVector(combinationSum2(vector<int>{10, 1, 2, 7, 6, 1, 5}, 8));
+    PrintMatrixVector(combinationSum2(vector<int>{2, 5, 2, 1, 2}, 5));
     /************************************************************************************/
 
     // Record the end time
