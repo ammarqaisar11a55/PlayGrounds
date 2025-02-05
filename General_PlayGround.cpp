@@ -181,12 +181,17 @@ void Level_Order_Traversal(TreeNode *Root)
     }
 }
 
-void Solve(vector<int> &Candidates, vector<int> Current_Combination, int current_sum, int &target, vector<vector<int>> &Res, int Current_Index)
+void Solve(vector<int> &Candidates, vector<int> Current_Combination, int current_sum, int &target, vector<vector<int>> &Res, int Current_Index,set<vector<int>>&st)
 {
     if (current_sum >= target)
     {
         if (current_sum == target)
+        {
+            if(st.find(Current_Combination)==st.end())
             Res.push_back(Current_Combination);
+
+            st.insert(Current_Combination);
+        }
 
         return;
     }
@@ -194,7 +199,7 @@ void Solve(vector<int> &Candidates, vector<int> Current_Combination, int current
     for (int i = Current_Index; i < Candidates.size(); i++)
     {
         Current_Combination.push_back(Candidates[i]);
-        Solve(Candidates, Current_Combination, current_sum + Candidates[i], target, Res, i);
+        Solve(Candidates, Current_Combination, current_sum + Candidates[i], target, Res, i + 1,st);
         Current_Combination.pop_back();
     }
 }
@@ -202,7 +207,9 @@ void Solve(vector<int> &Candidates, vector<int> Current_Combination, int current
 vector<vector<int>> combinationSum2(vector<int> candidates, int target)
 {
     vector<vector<int>> Res;
-    Solve(candidates, {}, 0, target, Res, 0);
+    sort(candidates.begin(), candidates.end());
+    set<vector<int>>st;
+    Solve(candidates, {}, 0, target, Res, 0,st);
     return Res;
 }
 
