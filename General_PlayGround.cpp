@@ -183,7 +183,28 @@ void Level_Order_Traversal(TreeNode *Root)
 
 TreeNode *createBinaryTree(vector<vector<int>> descriptions)
 {
-    return nullptr;
+    int Root_Node_Val = -1;
+    unordered_map<int,bool>Childs;
+
+    for(vector<int>Single_Node : descriptions)
+    {
+        Childs[Single_Node[1]] = Single_Node[2];
+    }
+
+    
+    
+    for(vector<int>Single_Node : descriptions)
+    {
+        if(Childs.find(Single_Node[0]) == Childs.end())
+        {
+            Root_Node_Val = Single_Node[0];
+            break;
+        }      
+    }
+
+    TreeNode* Root_Node = new TreeNode(Root_Node_Val);
+
+    return Root_Node;
 }
 
 int main()
