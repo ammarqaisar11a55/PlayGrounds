@@ -185,13 +185,21 @@ void Creation(TreeNode *&Root, int Val, unordered_map<int, int> &Left_Childs, un
 {
     if (Root == nullptr)
     {
-        TreeNode *Root = new TreeNode(Val);
+        Root = new TreeNode(Val);
     }
 
     int Left_Child = -1;
     int Right_Child = -1;
 
+    if(Left_Childs.find(Root->val)!=Left_Childs.end())
+    {
+        Creation(Root->left,Left_Childs[Root->val],Left_Childs,Right_Childs);    
+    }
 
+    if(Right_Childs.find(Root->val)!=Right_Childs.end())
+    {
+        Creation(Root->right,Right_Childs[Root->val],Left_Childs,Right_Childs);    
+    }
 }
 
 TreeNode *createBinaryTree(vector<vector<int>> descriptions)
@@ -230,21 +238,22 @@ TreeNode *createBinaryTree(vector<vector<int>> descriptions)
         }
     }
 
-    cout << "Left: " << endl;
+    // cout << "Left: " << endl;
 
-    for (auto x : Left_Childs)
-    {
-        cout << x.first << " -> " << x.second << endl;
-    }
+    // for (auto x : Left_Childs)
+    // {
+    //     cout << x.first << " -> " << x.second << endl;
+    // }
 
-    cout << "Right: " << endl;
+    // cout << "Right: " << endl;
 
-    for (auto x : Right_Childs)
-    {
-        cout << x.first << " -> " << x.second << endl;
-    }
+    // for (auto x : Right_Childs)
+    // {
+    //     cout << x.first << " -> " << x.second << endl;
+    // }
 
 
+    Creation(Root_Node,Root_Node_Val,Left_Childs,Right_Childs);
 
     return Root_Node;
 }
