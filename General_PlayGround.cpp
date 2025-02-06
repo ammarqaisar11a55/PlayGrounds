@@ -181,29 +181,48 @@ void Level_Order_Traversal(TreeNode *Root)
     }
 }
 
-int tupleSameProduct(vector<int> nums)
+
+int minFlips(vector<vector<int>> grid)
 {
-    unordered_map<int, int> Products_Freq;
+    int Cl_Flips = 0;
+    int Ro_Flips = 0;
 
-    for (int i = 0; i < nums.size(); i++)
+    int m = grid.size();
+    int n = grid[0].size();
+
+    // Checking Rows:
+
+    // cout<<"Row CHECK: "<<endl;
+
+    for (int i = 0; i < grid.size(); i++)
     {
-        for (int j = i + 1; j < nums.size(); j++)
+        for (int j = 0; j < grid[i].size() / 2; j++)
         {
-            Products_Freq[nums[i] * nums[j]]++;
+            if (grid[i][j] != grid[i][n - j - 1])
+            {
+                // cout << "[" << i << "," << j << "] == " << "[" << i << "," << grid[i].size() - j - 1 << "]" << endl;
+                Ro_Flips++;
+            }
         }
     }
 
-    int res = 0;
+    // Checking Cols:
 
-    for (auto X : Products_Freq)
+    // cout<<"COL CHECK: "<<endl;
+
+    for (int i = 0; i < grid.size() / 2; i++)
     {
-        if(X.second>1)
+        for (int j = 0; j < grid[0].size(); j++)
         {
-            res += 8*(X.second*(X.second-1)/2);
+            if (grid[i][j] != grid[m - i - 1][j])
+            {
+                // cout << "[" << i << "," << j << "] == " << "[" << grid.size() - i - 1 << "," << j << "]" << endl;
+                Cl_Flips++;
+            }
         }
     }
 
-    return res;
+    return min(Cl_Flips, Ro_Flips);
 }
 
 int main()
@@ -211,9 +230,9 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    cout << tupleSameProduct(vector<int>{2, 3, 4, 6}) << endl;
-    cout << tupleSameProduct(vector<int>{1, 2, 4, 5, 10}) << endl;
-    cout << tupleSameProduct(vector<int>{2,3,4,6,8,12}) << endl;
+    cout << minFlips(vector<vector<int>>{{1, 0, 0}, {0, 0, 0}, {0, 0, 1}}) << endl;
+    cout << minFlips(vector<vector<int>>{{0, 1}, {0, 1}, {0, 0}}) << endl;
+    cout << minFlips(vector<vector<int>>{{1}, {0}}) << endl;
     /************************************************************************************/
 
     // Record the end time
