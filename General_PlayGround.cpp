@@ -181,38 +181,29 @@ void Level_Order_Traversal(TreeNode *Root)
     }
 }
 
-void Solve(vector<int> &Candidates, vector<int> Current_Combination, int current_sum, int &target, vector<vector<int>> &Res, int Current_Index)
+int tupleSameProduct(vector<int> nums)
 {
-    if (current_sum >= target)
+    unordered_map<int, int> Products_Freq;
+
+    for (int i = 0; i < nums.size(); i++)
     {
-        if (current_sum == target)
+        for (int j = i + 1; j < nums.size(); j++)
         {
-            Res.push_back(Current_Combination);
-        }
-
-        return;
-    }
-
-    unordered_set<int> st;
-
-    for (int i = Current_Index; i < Candidates.size(); i++)
-    {
-        if (st.find(Candidates[i]) == st.end())
-        {
-            Current_Combination.push_back(Candidates[i]);
-            Solve(Candidates, Current_Combination, current_sum + Candidates[i], target, Res, i + 1);
-            Current_Combination.pop_back();
-            st.insert(Candidates[i]);
+            Products_Freq[nums[i] * nums[j]]++;
         }
     }
-}
 
-vector<vector<int>> combinationSum2(vector<int> candidates, int target)
-{
-    vector<vector<int>> Res;
-    sort(candidates.begin(), candidates.end());
-    Solve(candidates, {}, 0, target, Res, 0);
-    return Res;
+    int res = 0;
+
+    for (auto X : Products_Freq)
+    {
+        if(X.second>1)
+        {
+            res += 8*(X.second*(X.second-1)/2);
+        }
+    }
+
+    return res;
 }
 
 int main()
@@ -220,8 +211,9 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    PrintMatrixVector(combinationSum2(vector<int>{10, 1, 2, 7, 6, 1, 5}, 8));
-    PrintMatrixVector(combinationSum2(vector<int>{2, 5, 2, 1, 2}, 5));
+    cout << tupleSameProduct(vector<int>{2, 3, 4, 6}) << endl;
+    cout << tupleSameProduct(vector<int>{1, 2, 4, 5, 10}) << endl;
+    cout << tupleSameProduct(vector<int>{2,3,4,6,8,12}) << endl;
     /************************************************************************************/
 
     // Record the end time
