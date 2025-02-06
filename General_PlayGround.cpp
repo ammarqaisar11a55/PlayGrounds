@@ -191,9 +191,8 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    cout << minFlips(vector<vector<int>>{{1, 0, 0}, {0, 0, 0}, {0, 0, 1}}) << endl;
-    cout << minFlips(vector<vector<int>>{{0, 1}, {0, 1}, {0, 0}}) << endl;
-    cout << minFlips(vector<vector<int>>{{1}, {0}}) << endl;
+    cout<<getKth(12,15,2)<<endl;
+    cout<<getKth(7,11,4)<<endl;
     /************************************************************************************/
 
     // Record the end time
