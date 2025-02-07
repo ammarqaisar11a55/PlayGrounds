@@ -187,9 +187,6 @@ vector<int> queryResults(int limit, vector<vector<int>> queries)
 
 
 
-
-
-
     return Res;
 }
 
