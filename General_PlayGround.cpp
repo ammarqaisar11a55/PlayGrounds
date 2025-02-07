@@ -182,17 +182,32 @@ void Level_Order_Traversal(TreeNode *Root)
 }
 
 int minOperations(int n)
-{   
-    vector<int>nums;
+{
+    vector<int> nums(n);
 
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
-
+        nums[i] = (2 * i) + 1;
     }
 
-    PrintVector(nums);
+    int operations = 0;
 
-    return n;
+    while (n > -1)
+    {
+        int s = 0;
+        int e = n - 1;
+
+        while (s < e)
+        {
+            operations++;
+            nums[s++]++;
+            nums[e--]--;
+        }
+
+        n--;
+    }
+
+    return operations;
 }
 
 int main()
@@ -200,8 +215,9 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    cout<<minOperations(3)<<endl;
-    cout<<minOperations(6)<<endl;
+    cout << minOperations(3) << endl;
+    cout << minOperations(6) << endl;
+    cout << minOperations(25000000) << endl;
     /************************************************************************************/
 
     // Record the end time
