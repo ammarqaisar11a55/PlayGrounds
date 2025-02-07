@@ -185,7 +185,16 @@ vector<int> queryResults(int limit, vector<vector<int>> queries)
 {
     vector<int>Res;
 
-    
+    unordered_set<int>Current_Colors_Used;
+    unordered_map<int,int>Balls_with_Colors;
+
+    for(vector<int>Q : queries)
+    {
+        
+    }
+
+
+
 
 
     return Res;
