@@ -181,33 +181,8 @@ void Level_Order_Traversal(TreeNode *Root)
     }
 }
 
-int minOperations(int n)
+vector<vector<char>> rotateTheBox(vector<vector<char>> box)
 {
-    vector<int> nums(n);
-
-    for (int i = 0; i < n; i++)
-    {
-        nums[i] = (2 * i) + 1;
-    }
-
-    int operations = 0;
-
-    while (n > -1)
-    {
-        int s = 0;
-        int e = n - 1;
-
-        while (s < e)
-        {
-            operations++;
-            nums[s++]++;
-            nums[e--]--;
-        }
-
-        n--;
-    }
-
-    return operations;
 }
 
 int main()
@@ -215,9 +190,43 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    cout << minOperations(3) << endl;
-    cout << minOperations(6) << endl;
-    cout << minOperations(25000000) << endl;
+    vector<vector<char>> box1 = {
+        {'#', '.', '#'}};
+    auto result1 = solution.rotateTheBox(box1);
+    for (const auto &row : result1)
+    {
+        for (char c : row)
+            cout << c << " ";
+        cout << endl;
+    }
+    cout << "----------" << endl;
+
+    // Test Case 2
+    vector<vector<char>> box2 = {
+        {'#', '.', '*', '.'},
+        {'#', '#', '*', '.'}};
+    auto result2 = solution.rotateTheBox(box2);
+    for (const auto &row : result2)
+    {
+        for (char c : row)
+            cout << c << " ";
+        cout << endl;
+    }
+    cout << "----------" << endl;
+
+    // Test Case 3
+    vector<vector<char>> box3 = {
+        {'#', '#', '*', '.', '*', '.'},
+        {'#', '#', '#', '*', '.', '.'},
+        {'#', '#', '#', '.', '#', '.'}};
+    auto result3 = solution.rotateTheBox(box3);
+    for (const auto &row : result3)
+    {
+        for (char c : row)
+            cout << c << " ";
+        cout << endl;
+    }
+    cout << "----------" << endl;
     /************************************************************************************/
 
     // Record the end time
