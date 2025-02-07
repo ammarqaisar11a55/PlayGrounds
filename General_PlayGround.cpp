@@ -181,8 +181,14 @@ void Level_Order_Traversal(TreeNode *Root)
     }
 }
 
-vector<int> queryResults(int limit, vector<vector<int>> &queries)
+vector<int> queryResults(int limit, vector<vector<int>> queries)
 {
+    vector<int>Res;
+
+    
+
+
+    return Res;
 }
 
 int main()
