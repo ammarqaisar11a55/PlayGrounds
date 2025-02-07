@@ -185,27 +185,27 @@ vector<vector<char>> rotateTheBox(vector<vector<char>> box)
 {
     vector<vector<char>> Res(box[0].size(), vector<char>(box.size()));
 
-    while (true)
+    for (int i = box.size() - 1; i >= 0; i--)
     {
-        int Changes = 0;
-
-        for (int i = box.size() - 1; i >= 0; i--)
+        for (int j = box[i].size() - 1; j >= 1; j--)
         {
-            for (int j = box[i].size() - 1; j >= 1; j--)
+            if (box[i][j] == '.')
             {
-                if (box[i][j] == '.')
+                if (box[i][j - 1] == '#')
                 {
-                    if (box[i][j - 1] == '#')
+                    int Current_Empty_Box = j;
+                    int Stone_Box = j - 1;
+                    swap(box[i][Current_Empty_Box], box[i][Stone_Box]);
+
+                    while (Current_Empty_Box > 0 && Stone_Box > 0 && box[i][Current_Empty_Box] == '.' && box[i][Stone_Box] == '#')
                     {
-                        Changes++;
-                        swap(box[i][j], box[i][j - 1]);
+                        swap(box[i][Current_Empty_Box], box[i][Stone_Box]);
+                        Current_Empty_Box--;
+                        Stone_Box--;
                     }
                 }
             }
         }
-
-        if (Changes == 0)
-            break;
     }
 
     for (int i = 0; i < Res.size(); i++)
