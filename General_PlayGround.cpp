@@ -185,24 +185,6 @@ vector<int> queryResults(int limit, vector<vector<int>> queries)
 {
     vector<int>Res;
 
-    unordered_set<int>Current_Colors_Used;
-    unordered_map<int,int>Balls_with_Colors;
-
-    for(vector<int>Q : queries)
-    {
-        int Ball = Q[0];
-        int Color = Q[1];
-
-        if(Balls_with_Colors.find(Ball) == Balls_with_Colors.end())
-        {
-            Balls_with_Colors[Ball] = Color;
-            Current_Colors_Used.find
-        }
-
-
-
-        Res.push_back(Balls_with_Colors.size());
-    }
 
 
 
