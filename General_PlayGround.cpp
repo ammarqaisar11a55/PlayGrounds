@@ -184,7 +184,8 @@ void Level_Order_Traversal(TreeNode *Root)
 vector<int> queryResults(int limit, vector<vector<int>> queries)
 {
     vector<int>Res;
-    
+    unordered_map<int,unordered_set<int,int>>Colors_with_Balls;
+
 
 
     return Res;
