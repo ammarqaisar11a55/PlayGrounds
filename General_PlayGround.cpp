@@ -181,24 +181,8 @@ void Level_Order_Traversal(TreeNode *Root)
     }
 }
 
-int CalculatePow(int N)
+vector<int> queryResults(int limit, vector<vector<int>> &queries)
 {
-
-}
-
-int getKth(int lo, int hi, int k)
-{
-    unordered_map<int, int> Elements_Power;
-
-    vector<int> elements;
-
-    for (int i = low; i <= hi; i++)
-    {
-        elements.push_back(i);
-        Elements_Power[i] = CalculatePow(i);
-    }
-
-    return elements[k];
 }
 
 int main()
@@ -206,8 +190,8 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    cout << getKth(12, 15, 2) << endl;
-    cout << getKth(7, 11, 4) << endl;
+    PrintVector(queryResults(4,vector<vector<int>>{{1,4},{2,5},{1,3},{3,4}}));
+    PrintVector(queryResults(4,vector<vector<int>>{{0,1},{1,2},{2,2},{3,4},{4,5}}));
     /************************************************************************************/
 
     // Record the end time
