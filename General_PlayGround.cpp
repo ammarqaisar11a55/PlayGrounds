@@ -124,99 +124,32 @@ void PrintMatrixVector(vector<vector<int>> Grid)
     cout << endl;
 }
 
-void PrintMatrixVector(vector<vector<string>> Grid)
+/*********************************************************************************************************/
+/*********************************************************************************************************/
+/*********************************************************************************************************/
+/*********************************************************************************************************/
+/*********************************************************************************************************/
+/*********************************************************************************************************/
+/*********************************************************************************************************/
+
+int Solve(vector<int> nums)
 {
-    for (int i = 0; i < Grid.size(); i++)
+
+    unordered_map<int, int> mp;
+
+    long long int Total_Pairs = nums.size() * (nums.size() - 1) / 2;
+    int Good_Pairs = 0;
+
+    for (int i = 0; i < nums.size(); i++)
     {
-        for (int j = 0; j < Grid[i].size(); j++)
-        {
-            cout << Grid[i][j] << " ";
-        }
-        cout << endl;
+        int Diff = nums[i] - i;
+
+        Good_Pairs += mp[Diff];
+
+        mp[Diff]++;
     }
 
-    cout << endl;
-}
-
-/*********************************************************************************************************/
-/*********************************************************************************************************/
-/*********************************************************************************************************/
-/*********************************************************************************************************/
-/*********************************************************************************************************/
-/*********************************************************************************************************/
-/*********************************************************************************************************/
-
-void Level_Order_Traversal(TreeNode *Root)
-{
-    if (Root == NULL)
-        return;
-
-    queue<TreeNode *> Nodes;
-
-    Nodes.push(Root);
-    Nodes.push(NULL);
-
-    while (!Nodes.empty())
-    {
-        TreeNode *Temp = Nodes.front();
-        Nodes.pop();
-
-        if (Temp == NULL)
-        {
-            cout << endl;
-
-            if (!Nodes.empty())
-                Nodes.push(NULL);
-        }
-        else
-        {
-            cout << Temp->val << " ";
-
-            if (Temp->left != NULL)
-                Nodes.push(Temp->left);
-
-            if (Temp->right != NULL)
-                Nodes.push(Temp->right);
-        }
-    }
-}
-
-vector<vector<char>> rotateTheBox(vector<vector<char>> box)
-{
-    vector<vector<char>> Res(box[0].size(), vector<char>(box.size()));
-
-    for (int i = box.size() - 1; i >= 0; i--)
-    {
-        for (int j = box[i].size() - 1; j >= 1; j--)
-        {
-            if (box[i][j] == '.')
-            {
-                if (box[i][j - 1] == '#')
-                {
-                    int Current_Empty_Box = j;
-                    int Stone_Box = j - 1;
-                    swap(box[i][Current_Empty_Box], box[i][Stone_Box]);
-
-                    while (Current_Empty_Box > 0 && Stone_Box > 0 && box[i][Current_Empty_Box] == '.' && box[i][Stone_Box] == '#')
-                    {
-                        swap(box[i][Current_Empty_Box], box[i][Stone_Box]);
-                        Current_Empty_Box--;
-                        Stone_Box--;
-                    }
-                }
-            }
-        }
-    }
-
-    for (int i = 0; i < Res.size(); i++)
-    {
-        for (int j = 0; j < Res[i].size(); j++)
-        {
-            Res[i][j] = box[box.size() - j - 1][i];
-        }
-    }
-
-    return Res;
+    return Total_Pairs - Good_Pairs;
 }
 
 int main()
@@ -224,43 +157,8 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    vector<vector<char>> box1 = {
-        {'#', '.', '#'}};
-    auto result1 = rotateTheBox(box1);
-    for (const auto &row : result1)
-    {
-        for (char c : row)
-            cout << c << " ";
-        cout << endl;
-    }
-    cout << "----------" << endl;
-
-    // Test Case 2
-    vector<vector<char>> box2 = {
-        {'#', '.', '*', '.'},
-        {'#', '#', '*', '.'}};
-    auto result2 = rotateTheBox(box2);
-    for (const auto &row : result2)
-    {
-        for (char c : row)
-            cout << c << " ";
-        cout << endl;
-    }
-    cout << "----------" << endl;
-
-    // Test Case 3
-    vector<vector<char>> box3 = {
-        {'#', '#', '*', '.', '*', '.'},
-        {'#', '#', '#', '*', '.', '.'},
-        {'#', '#', '#', '.', '#', '.'}};
-    auto result3 = rotateTheBox(box3);
-    for (const auto &row : result3)
-    {
-        for (char c : row)
-            cout << c << " ";
-        cout << endl;
-    }
-    cout << "----------" << endl;
+    cout << (Solve(vector<int>{4, 1, 3, 3})) << endl;
+    cout << (Solve(vector<int>{1, 2, 3, 4, 5})) << endl;
     /************************************************************************************/
 
     // Record the end time
