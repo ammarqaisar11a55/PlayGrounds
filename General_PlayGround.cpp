@@ -156,8 +156,7 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    cout << (Solve(vector<int>{4, 1, 3, 3})) << endl;
-    cout << (Solve(vector<int>{1, 2, 3, 4, 5})) << endl;
+    
     /************************************************************************************/
 
     // Record the end time
