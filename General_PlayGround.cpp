@@ -134,7 +134,6 @@ void PrintMatrixVector(vector<vector<int>> Grid)
 
 int Solve(vector<int> nums)
 {
-
     unordered_map<int, int> mp;
 
     long long int Total_Pairs = nums.size() * (nums.size() - 1) / 2;
