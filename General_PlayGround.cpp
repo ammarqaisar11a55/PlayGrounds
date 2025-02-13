@@ -131,31 +131,46 @@ void PrintMatrixVector(vector<vector<int>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 /*********************************************************************************************************/
-
-void Reverse(int s , int e, vector<int>&nums)
+int Solve(int i, vector<int>&Nums, unordered_map<int,int>&dp, int LAST_HOUSE)
 {
-    if(s>=e)
+    if(i > LAST_HOUSE)
     {
-        return;
+        return 0;
     }
 
-    int temp = nums[s];
-    nums[s] = nums[e];
-    nums[e] = temp;
+    if(dp.find(i) != dp.end())
+    {
+        return dp[i];
 
-    Reverse(s+1,e-1,nums);
+    }
+
+    int use = Nums[i] + Solve(i + 2,Nums,dp,LAST_HOUSE);
+    int SKip = Solve(i + 1,Nums,dp,LAST_HOUSE);
+
+    dp[i] = max(use,SKip);
+
+    return dp[i];
 }
 
+int rob(vector<int> nums)
+{
+    unordered_map<int,int>Dp;
+    
+    int try1 = Solve(0,nums,Dp,nums.size() - 2);
+    Dp.clear();
+    int try2 = Solve(1,nums,Dp,nums.size()-1);    
+    return max(try1,try2);
+}
 
 int main()
 {
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    vector<int>N = {1,2,3,4,5};
-    Reverse(0,N.size()-1,N);
-    PrintVector(N);
-    
+    cout<<rob(vector<int>{2,3,2})<<endl;
+    cout<<rob(vector<int>{1,2,3,1})<<endl;
+    cout<<rob(vector<int>{1,2,3})<<endl;
+
     /************************************************************************************/
     /************************************************************************************/
     /************************************************************************************/
