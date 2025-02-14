@@ -131,9 +131,52 @@ void PrintMatrixVector(vector<vector<int>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 /*********************************************************************************************************/
+
+int ArrayBinarySearch(vector<int> arr, int key)
+{
+    int start = 0;
+    int end = arr.size() - 1;
+
+    while (start <= end)
+    {
+        int mid = start + (end - start) / 2;
+
+        if (arr[mid] == key)
+            return mid;
+
+        if (key > arr[mid])
+            start = mid + 1;
+
+        if (key < arr[mid])
+            end = mid - 1;
+    }
+
+    return -1;
+
+    // Time Complexity : O(log N)
+    // Space Complexity : O(1)
+}
+
 int rob(vector<int> nums)
 {
+    int n = nums.size();
+
+    if (n == 1)
+    {
+        return nums[0];
+    }
+
+    vector<int> Dp1(n);
+
+    Dp1[n] = nums[0];
+    Dp1[1] = max(nums[n-1],nums[0]);
     
+    for(int i = 2; i < nums.size(); i++)
+    {
+        Dp1[i] = max(Dp1[i-1], nums[i] + Dp1[i-2]);
+    }
+
+    return Dp1[n - 1];
 }
 
 int main()
@@ -141,9 +184,9 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    cout<<rob(vector<int>{2,3,2})<<endl;
-    cout<<rob(vector<int>{1,2,3,1})<<endl;
-    cout<<rob(vector<int>{1,2,3})<<endl;
+    cout << rob(vector<int>{2, 3, 2}) << endl;
+    cout << rob(vector<int>{1, 2, 3, 1}) << endl;
+    cout << rob(vector<int>{1, 2, 3}) << endl;
 
     /************************************************************************************/
     /************************************************************************************/
