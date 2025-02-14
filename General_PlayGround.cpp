@@ -132,31 +132,6 @@ void PrintMatrixVector(vector<vector<int>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-int ArrayBinarySearch(vector<int> arr, int key)
-{
-    int start = 0;
-    int end = arr.size() - 1;
-
-    while (start <= end)
-    {
-        int mid = start + (end - start) / 2;
-
-        if (arr[mid] == key)
-            return mid;
-
-        if (key > arr[mid])
-            start = mid + 1;
-
-        if (key < arr[mid])
-            end = mid - 1;
-    }
-
-    return -1;
-
-    // Time Complexity : O(log N)
-    // Space Complexity : O(1)
-}
-
 int rob(vector<int> nums)
 {
     int n = nums.size();
