@@ -134,16 +134,28 @@ void PrintMatrixVector(vector<vector<int>> Grid)
 
 int minPathSum(vector<vector<int>> grid)
 {
-    vector<vector<int>>Dp(grid.size(),vector<int>(grid[0].size(),0));
+    vector<vector<int>> Dp(grid.size(), vector<int>(grid[0].size(), 0));
 
-    for(int i = 0; i < grid.size(); i++)
+    for (int i = 0; i < grid.size(); i++)
     {
-        for(int j = 0; j < grid[i].size(); j++)
+        for (int j = 0; j < grid[i].size(); j++)
         {
-            
+            if (i == 0)
+            {
+                Dp[i][j] = j > 0 ? Dp[i][j-1] + grid[i][j] : grid[i][j];
+            }
+            else
+            {
+                int Top_element = Dp[i-1][j-1];
+                int Left_element = j > 0 ? Dp[i][j-1] : grid[i][j];
+
+                Dp[i][j] = grid[i][j] + min(Top_element,Left_element);
+            }
         }
     }
-    
+
+    PrintMatrixVector(Dp);
+
     return 0;
 }
 
@@ -153,8 +165,8 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    cout<<minPathSum(vector<vector<int>>{{1,3,1},{1,5,1},{4,2,1}})<<endl;
-    cout<<minPathSum(vector<vector<int>>{{1,2,3},{4,5,6}})<<endl;
+    cout << minPathSum(vector<vector<int>>{{1, 3, 1}, {1, 5, 1}, {4, 2, 1}}) << endl;
+    cout << minPathSum(vector<vector<int>>{{1, 2, 3}, {4, 5, 6}}) << endl;
 
     /************************************************************************************/
     /************************************************************************************/
