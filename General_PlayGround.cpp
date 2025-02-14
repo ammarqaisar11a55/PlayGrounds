@@ -140,23 +140,21 @@ int minPathSum(vector<vector<int>> grid)
     {
         for (int j = 0; j < grid[i].size(); j++)
         {
-            if (i == 0)
+            if (i == 0 && j == 0)
             {
-                Dp[i][j] = j > 0 ? Dp[i][j-1] + grid[i][j] : grid[i][j];
+                Dp[i][j] = grid[i][j];
             }
             else
             {
-                int Top_element = Dp[i-1][j-1];
-                int Left_element = j > 0 ? Dp[i][j-1] : grid[i][j];
+                int Top_Element = i > 0 ? Dp[i - 1][j] : INT_MAX;
+                int Left_Element = j > 0 ? Dp[i][j - 1] : INT_MAX;
 
-                Dp[i][j] = grid[i][j] + min(Top_element,Left_element);
+                Dp[i][j] = grid[i][j] + min(Top_Element, Left_Element);
             }
         }
     }
 
-    PrintMatrixVector(Dp);
-
-    return 0;
+    return Dp[Dp.size() - 1][Dp[0].size() - 1];
 }
 
 int main()
