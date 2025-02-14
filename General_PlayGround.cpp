@@ -132,26 +132,19 @@ void PrintMatrixVector(vector<vector<int>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-int rob(vector<int> nums)
+int minPathSum(vector<vector<int>> grid)
 {
-    int n = nums.size();
+    vector<vector<int>>Dp(grid.size(),vector<int>(grid[0].size(),0));
 
-    if (n == 1)
+    for(int i = 0; i < grid.size(); i++)
     {
-        return nums[0];
+        for(int j = 0; j < grid[i].size(); j++)
+        {
+            
+        }
     }
-
-    vector<int> Dp1(n);
-
-    Dp1[n] = nums[0];
-    Dp1[1] = max(nums[n-1],nums[0]);
     
-    for(int i = 2; i < nums.size(); i++)
-    {
-        Dp1[i] = max(Dp1[i-1], nums[i] + Dp1[i-2]);
-    }
-
-    return Dp1[n - 1];
+    return 0;
 }
 
 int main()
@@ -159,9 +152,9 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    cout << rob(vector<int>{2, 3, 2}) << endl;
-    cout << rob(vector<int>{1, 2, 3, 1}) << endl;
-    cout << rob(vector<int>{1, 2, 3}) << endl;
+
+    cout<<minPathSum(vector<vector<int>>{{1,3,1},{1,5,1},{4,2,1}})<<endl;
+    cout<<minPathSum(vector<vector<int>>{{1,2,3},{4,5,6}})<<endl;
 
     /************************************************************************************/
     /************************************************************************************/
