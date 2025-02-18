@@ -132,29 +132,73 @@ void PrintMatrixVector(vector<vector<int>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-int minPathSum(vector<vector<int>> grid)
+bool Solve(int index, string &pattern, vector<int> &Res, vector<bool> &Used)
 {
-    vector<vector<int>> Dp(grid.size(), vector<int>(grid[0].size(), 0));
-
-    for (int i = 0; i < grid.size(); i++)
+    if (Res.size() == pattern.length() + 1)
     {
-        for (int j = 0; j < grid[i].size(); j++)
-        {
-            if (i == 0 && j == 0)
-            {
-                Dp[i][j] = grid[i][j];
-            }
-            else
-            {
-                int Top_Element = i > 0 ? Dp[i - 1][j] : INT_MAX;
-                int Left_Element = j > 0 ? Dp[i][j - 1] : INT_MAX;
+        return true;
+    }
 
-                Dp[i][j] = grid[i][j] + min(Top_Element, Left_Element);
+    for (int i = 0; i <= pattern.length(); i++)
+    {
+        if (Used[i])
+        {
+            continue;
+        }
+
+        if (index == 0)
+        {
+            Res.push_back((i));
+            Used[i] = true;
+
+            if (Solve(index + 1, pattern, Res, Used))
+                return true;
+
+            Res.pop_back();
+            Used[i] = false;
+        }
+        else
+        {
+            if (pattern[index - 1] == 'I')
+            {
+                if (Res.back() < i)
+                {
+                    Used[i] = true;
+                    Res.push_back(i);
+
+                    if (Solve(index + 1, pattern, Res, Used))
+                        return true;
+
+                    Used[i] = false;
+                    Res.pop_back();
+                }
+            }
+            else if (pattern[index - 1] == 'D')
+            {
+                if (Res.back() > i)
+                {
+                    Used[i] = true;
+                    Res.push_back(i);
+
+                    if (Solve(index + 1, pattern, Res, Used))
+                        return true;
+
+                    Used[i] = false;
+                    Res.pop_back();
+                }
             }
         }
     }
 
-    return Dp[Dp.size() - 1][Dp[0].size() - 1];
+    return false;
+}
+
+vector<int> diStringMatch(string s)
+{
+    vector<int> Res;
+    vector<bool> Used(s.length() + 1, false);
+    Solve(0, s, Res, Used);
+    return Res;
 }
 
 int main()
@@ -163,8 +207,11 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    cout << minPathSum(vector<vector<int>>{{1, 3, 1}, {1, 5, 1}, {4, 2, 1}}) << endl;
-    cout << minPathSum(vector<vector<int>>{{1, 2, 3}, {4, 5, 6}}) << endl;
+    // freopen("Output.txt", "w", stdout);
+
+    PrintVector(diStringMatch("IDID"));
+    PrintVector(diStringMatch("III"));
+    PrintVector(diStringMatch("DDI"));
 
     /************************************************************************************/
     /************************************************************************************/
