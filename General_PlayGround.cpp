@@ -132,73 +132,31 @@ void PrintMatrixVector(vector<vector<int>> Grid)
 /*********************************************************************************************************/
 /*********************************************************************************************************/
 
-bool Solve(int index, string &pattern, vector<int> &Res, vector<bool> &Used)
+void Solve(vector<int> Current_Combination, vector<vector<int>> &Res, int k, int range, int start)
 {
-    if (Res.size() == pattern.length() + 1)
+    if (Current_Combination.size() == k)
     {
-        return true;
+        if (Current_Combination.empty() == false)
+        {
+            Res.push_back(Current_Combination);
+        }
+
+        return;
     }
 
-    for (int i = 0; i <= pattern.length(); i++)
+    for(int i = start; i <= range; i++)
     {
-        if (Used[i])
-        {
-            continue;
-        }
-
-        if (index == 0)
-        {
-            Res.push_back((i));
-            Used[i] = true;
-
-            if (Solve(index + 1, pattern, Res, Used))
-                return true;
-
-            Res.pop_back();
-            Used[i] = false;
-        }
-        else
-        {
-            if (pattern[index - 1] == 'I')
-            {
-                if (Res.back() < i)
-                {
-                    Used[i] = true;
-                    Res.push_back(i);
-
-                    if (Solve(index + 1, pattern, Res, Used))
-                        return true;
-
-                    Used[i] = false;
-                    Res.pop_back();
-                }
-            }
-            else if (pattern[index - 1] == 'D')
-            {
-                if (Res.back() > i)
-                {
-                    Used[i] = true;
-                    Res.push_back(i);
-
-                    if (Solve(index + 1, pattern, Res, Used))
-                        return true;
-
-                    Used[i] = false;
-                    Res.pop_back();
-                }
-            }
-        }
+        Current_Combination.push_back(i);
+        Solve(Current_Combination,Res,k,range,i + 1);
+        Current_Combination.pop_back();
     }
-
-    return false;
 }
 
-vector<int> diStringMatch(string s)
+vector<vector<int>> combine(int n, int k)
 {
-    vector<int> Res;
-    vector<bool> Used(s.length() + 1, false);
-    Solve(0, s, Res, Used);
-    return Res;
+    vector<vector<int>> Res;
+    Solve({}, Res, k, n,1);
+     return Res;
 }
 
 int main()
@@ -209,9 +167,8 @@ int main()
 
     // freopen("Output.txt", "w", stdout);
 
-    PrintVector(diStringMatch("IDID"));
-    PrintVector(diStringMatch("III"));
-    PrintVector(diStringMatch("DDI"));
+    PrintMatrixVector(combine(4, 2));
+    PrintMatrixVector(combine(1, 1));
 
     /************************************************************************************/
     /************************************************************************************/
