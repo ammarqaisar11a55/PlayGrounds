@@ -4,7 +4,7 @@ using ll = long long;
 
 void solve()
 {
-    
+        
 }
 
 int main()
