@@ -163,6 +163,11 @@ Candies:     1,1,1,1,1,1
            1,1,1,1,1,1
 */
 
+vector<int> answerQueries(vector<int> &nums, vector<int> &queries)
+{
+
+}
+
 
 
 int main()
@@ -171,8 +176,9 @@ int main()
 
     /************************************** Input Test Cases: **************************/
 
-    freopen("Output.txt", "w", stdout);
-
+    // freopen("Output.txt", "w", stdout);
+    PrintVector(answerQueries(vector<int>{4,5,2,1},vector<int>{3,10,21}));
+    PrintVector(answerQueries(vector<int>{2,3,4,5},vector<int>{1}));
 
     /************************************************************************************/
     /************************************************************************************/
