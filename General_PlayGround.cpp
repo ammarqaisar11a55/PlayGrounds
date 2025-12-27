@@ -152,38 +152,32 @@ void PrintList(ListNode *Head)
     g++ General_PlayGround.cpp -o Gp
 */
 
-int binaryGap(int n)
+bool scoreBalance(string s)
 {
-    string binary;
+    int left_score = 0, right_score = 0;
 
-    while (n > 0)
+    for (int i = 0; i < s.length(); i++)
     {
-        binary.push_back(('0' + n % 2));
-        n/=2;
+        int current_character = s[i] - 'a' + 1;
+        right_score += current_character;
     }
 
-    reverse(binary.begin(),binary.end());
-
-
-    vector<int>ones_position;
-
-    for(int i =0; i < binary.length(); i++)
+    for (int i = 0; i < s.length(); i++)
     {
-        if(binary[i] == '1')
-        {
-            ones_position.push_back(i);
-        }
+        int current_character = s[i] - 'a' + 1;
+        left_score += current_character;
+        right_score -= current_character;
+
+        // cout<<"index: "<<i<<endl<<"left: "<<left_score<< " , right: "<<right_score<<endl;
+
+        if (left_score > right_score)
+            return false;
+
+        if (left_score == right_score)
+            return true;
     }
 
-    int res = 0;
-
-    for(int i = 1; i < ones_position.size(); i++)
-    {
-        res = max(res,ones_position[i] - ones_position[i - 1]);
-    }
-
-
-    return res;
+    return false;
 }
 
 int main()
@@ -192,10 +186,8 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
-    cout << "Expected: 2" << ", Actual: " << binaryGap(22) << endl;
-    cout << "Expected: 0" << ", Actual: " << binaryGap(8) << endl;
-    cout << "Expected: 2" << ", Actual: " << binaryGap(5) << endl;
-    cout << "Expected: 2" << ", Actual: " << binaryGap(13) << endl;
+    cout << scoreBalance("adcb") << endl;
+    cout << scoreBalance("bace") << endl;
 
     /************************************************************************************/
     /************************************************************************************/
