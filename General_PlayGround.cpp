@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unordered_map>
+#include <map>
 #include <queue>
 #include <stack>
 #include <algorithm>
@@ -9,7 +10,6 @@
 #include <cmath>
 #include <set>
 #include <chrono>
-#include <map>
 #include <list>
 #include <climits>
 using namespace std;
@@ -29,7 +29,9 @@ public:
     }
 };
 
-void PrintVector(vector<string> a)
+template <typename V>
+
+void PrintVector(vector<V> a)
 {
     cout << endl;
     cout << "[";
@@ -46,58 +48,9 @@ void PrintVector(vector<string> a)
     cout << endl;
 }
 
-void PrintVector(vector<char> a)
-{
-    cout << endl;
-    cout << "[";
+template <typename M>
 
-    for (int i = 0; i < a.size(); i++)
-    {
-        cout << a[i];
-        if (i != a.size() - 1)
-        {
-            cout << ",";
-        }
-    }
-    cout << "]";
-    cout << endl;
-}
-
-void PrintVector(vector<int> a)
-{
-    cout << endl;
-    cout << "[";
-
-    for (int i = 0; i < a.size(); i++)
-    {
-        cout << a[i];
-        if (i != a.size() - 1)
-        {
-            cout << ",";
-        }
-    }
-    cout << "]";
-    cout << endl;
-}
-
-void PrintVector(vector<bool> a)
-{
-    cout << endl;
-    cout << "[";
-
-    for (int i = 0; i < a.size(); i++)
-    {
-        cout << a[i];
-        if (i != a.size() - 1)
-        {
-            cout << ",";
-        }
-    }
-    cout << "]";
-    cout << endl;
-}
-
-void PrintMatrixVector(vector<vector<char>> Grid)
+void PrintMatrixVector(vector<vector<M>> Grid)
 {
     for (int i = 0; i < Grid.size(); i++)
     {
@@ -111,29 +64,77 @@ void PrintMatrixVector(vector<vector<char>> Grid)
     cout << endl;
 }
 
-void PrintMatrixVector(vector<vector<int>> Grid)
+void Level_Order_Traversal(TreeNode *Root)
 {
-    for (int i = 0; i < Grid.size(); i++)
-    {
-        for (int j = 0; j < Grid[i].size(); j++)
-        {
-            cout << Grid[i][j] << " ";
-        }
-        cout << endl;
-    }
+    if (Root == NULL)
+        return;
 
-    cout << endl;
+    queue<TreeNode *> Nodes;
+
+    Nodes.push(Root);
+    Nodes.push(NULL);
+
+    while (!Nodes.empty())
+    {
+        TreeNode *Temp = Nodes.front();
+        Nodes.pop();
+
+        if (Temp == NULL)
+        {
+            cout << endl;
+
+            if (!Nodes.empty())
+                Nodes.push(NULL);
+        }
+        else
+        {
+            cout << Temp->val << " ";
+
+            if (Temp->left != NULL)
+                Nodes.push(Temp->left);
+
+            if (Temp->right != NULL)
+                Nodes.push(Temp->right);
+        }
+    }
 }
 
-void PrintMatrixVector(vector<vector<string>> Grid)
+// Trie Node Definition
+class TrieNode
 {
-    for (int i = 0; i < Grid.size(); i++)
+public:
+    unordered_map<char, TrieNode *> children;
+    bool isEndOfWord;
+
+    TrieNode()
     {
-        for (int j = 0; j < Grid[i].size(); j++)
-        {
-            cout << Grid[i][j] << " ";
-        }
-        cout << endl;
+        isEndOfWord = false;
+    }
+};
+
+class ListNode
+{
+public:
+    int val;
+    ListNode *next;
+
+    ListNode(int val)
+    {
+        this->val = val;
+        this->next = NULL;
+    }
+};
+
+void PrintList(ListNode *Head)
+{
+    ListNode *Temp = Head;
+
+    cout << "Data: ";
+
+    while (Temp != NULL)
+    {
+        cout << Temp->val << " ";
+        Temp = Temp->next;
     }
 
     cout << endl;
@@ -148,20 +149,18 @@ void PrintMatrixVector(vector<vector<string>> Grid)
 /*********************************************************************************************************/
 
 /*
-    g++ General_PlayGround.cpp -o General_PlayGround
+    g++ General_PlayGround.cpp -o Gp
 */
 
 
-/**/
 
 int main()
 {
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-
     /************************************************************************************/
-    /************************************************************************************/
+  
     /************************************************************************************/
     /************************************************************************************/
     /************************************************************************************/
@@ -198,6 +197,7 @@ int main()
     // Calculate the duration in microseconds
     auto duration = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
+    cout << '\n';
     cout << "Execution time: " << duration << " ms" << endl;
 
     return 0;
