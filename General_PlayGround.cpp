@@ -152,16 +152,46 @@ void PrintList(ListNode *Head)
     g++ General_PlayGround.cpp -o Gp
 */
 
-int numEquivDominoPairs(vector<vector<int>> dominoes)
+string gcdOfStrings(string str1, string str2)
 {
-    map<pair<int,int>,int>mp;
-    int res = 0;
+    unordered_set<char>str1_characters,str2_characters;
 
-    for(vector<int> pair : dominoes)
+    string res;
+
+    for(char c : str1)
     {
-        sort(pair.begin(),pair.end());
-        res += mp[{pair[0],pair[1]}]; 
-        mp[{pair[0],pair[1]}]++;
+        str1_characters.insert(c);
+    }
+
+    for(char c : str2)
+    {
+        str2_characters.insert(c);
+    }
+
+    if(str1_characters != str2_characters)
+    {
+        return res;
+    }
+
+
+    int min_length = min(str1.length(),str2.length());
+
+    for(int i = 0; i < min_length; i++)
+    {
+        if(str1[i] == str2[i] && str1[i] != res[0])
+        {
+            res += str1[i];
+
+            // if(res.length() == str1_characters.size() && res.length() == str2_characters.size())
+            // {
+            //     break;
+            // }
+
+        }
+        else
+        {
+            break;
+        }
     }
 
     return res;
@@ -173,8 +203,10 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
-    cout<<numEquivDominoPairs(vector<vector<int>>{{1,2},{2,1},{3,4},{5,6}})<<endl;
-    cout<<numEquivDominoPairs(vector<vector<int>>{{1,2},{1,2},{1,1},{1,2},{2,2}})<<endl;
+    cout<<gcdOfStrings("ABCABC","ABC")<<endl;
+    cout<<gcdOfStrings("ABABAB","ABAB")<<endl;
+    cout<<gcdOfStrings("LEET","CODE")<<endl;
+    cout<<gcdOfStrings("AAAAAB","AAA")<<endl;
 
     /************************************************************************************/
     /************************************************************************************/
