@@ -152,32 +152,19 @@ void PrintList(ListNode *Head)
     g++ General_PlayGround.cpp -o Gp
 */
 
-bool scoreBalance(string s)
+int numEquivDominoPairs(vector<vector<int>> dominoes)
 {
-    int left_score = 0, right_score = 0;
+    map<pair<int,int>,int>mp;
+    int res = 0;
 
-    for (int i = 0; i < s.length(); i++)
+    for(vector<int> pair : dominoes)
     {
-        int current_character = s[i] - 'a' + 1;
-        right_score += current_character;
+        sort(pair.begin(),pair.end());
+        res += mp[{pair[0],pair[1]}]; 
+        mp[{pair[0],pair[1]}]++;
     }
 
-    for (int i = 0; i < s.length(); i++)
-    {
-        int current_character = s[i] - 'a' + 1;
-        left_score += current_character;
-        right_score -= current_character;
-
-        // cout<<"index: "<<i<<endl<<"left: "<<left_score<< " , right: "<<right_score<<endl;
-
-        if (left_score > right_score)
-            return false;
-
-        if (left_score == right_score)
-            return true;
-    }
-
-    return false;
+    return res;
 }
 
 int main()
@@ -186,8 +173,8 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
-    cout << scoreBalance("adcb") << endl;
-    cout << scoreBalance("bace") << endl;
+    cout<<numEquivDominoPairs(vector<vector<int>>{{1,2},{2,1},{3,4},{5,6}})<<endl;
+    cout<<numEquivDominoPairs(vector<vector<int>>{{1,2},{1,2},{1,1},{1,2},{2,2}})<<endl;
 
     /************************************************************************************/
     /************************************************************************************/
