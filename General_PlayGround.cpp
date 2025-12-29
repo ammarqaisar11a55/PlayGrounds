@@ -152,49 +152,27 @@ void PrintList(ListNode *Head)
     g++ General_PlayGround.cpp -o Gp
 */
 
-string gcdOfStrings(string str1, string str2)
+string getSmallestString(string s)
 {
-    unordered_set<char>str1_characters,str2_characters;
-
-    string res;
-
-    for(char c : str1)
+    for (int i = 0; i < s.length() - 1; i++)
     {
-        str1_characters.insert(c);
-    }
+        int left = s[i] - '0';
+        int right = s[i + 1] - '0';
 
-    for(char c : str2)
-    {
-        str2_characters.insert(c);
-    }
+        int left_parity = left % 2 == 0 ? 0 : 1;
+        int right_parity = right % 2 == 0 ? 0 : 1;
 
-    if(str1_characters != str2_characters)
-    {
-        return res;
-    }
-
-
-    int min_length = min(str1.length(),str2.length());
-
-    for(int i = 0; i < min_length; i++)
-    {
-        if(str1[i] == str2[i] && str1[i] != res[0])
+        if(left_parity == right_parity)
         {
-            res += str1[i];
-
-            // if(res.length() == str1_characters.size() && res.length() == str2_characters.size())
-            // {
-            //     break;
-            // }
-
-        }
-        else
-        {
-            break;
+            if(left > right)
+            {
+                swap(s[i],s[i+1]);
+                break;
+            }
         }
     }
 
-    return res;
+    return s;
 }
 
 int main()
@@ -203,10 +181,8 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
-    cout<<gcdOfStrings("ABCABC","ABC")<<endl;
-    cout<<gcdOfStrings("ABABAB","ABAB")<<endl;
-    cout<<gcdOfStrings("LEET","CODE")<<endl;
-    cout<<gcdOfStrings("AAAAAB","AAA")<<endl;
+    cout << getSmallestString("45320") << endl;
+    cout << getSmallestString("001") << endl;
 
     /************************************************************************************/
     /************************************************************************************/
