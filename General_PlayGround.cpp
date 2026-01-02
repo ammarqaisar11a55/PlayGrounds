@@ -186,6 +186,50 @@ public:
 
     void pushMiddle(int val)
     {
+        ListNode *node_to_insert = new ListNode(val);
+
+        if (head == nullptr)
+        {
+            current_size++;
+            head = tail = node_to_insert;
+            PrintList(head);
+            return;
+        }
+
+        int position_to_reach;
+
+        if (current_size % 2 == 0)
+        {
+            position_to_reach = current_size / 2;
+        }
+        else
+        {
+            position_to_reach = (current_size + 1) / 2;
+        }
+
+        ListNode *cralwer = head;
+
+        for (int i = 1; i < position_to_reach; i++)
+        {
+            cralwer = cralwer->next;
+        }
+
+        node_to_insert->prev = cralwer;
+        node_to_insert->next = cralwer->next;
+
+        if (cralwer->next != nullptr)
+        {
+            node_to_insert->next->prev = node_to_insert;
+        }
+        else
+        {
+            tail = node_to_insert;
+        }
+
+        PrintList(head);
+
+        cralwer->next = node_to_insert;
+        current_size++;
     }
 
     void pushBack(int val)
@@ -247,6 +291,24 @@ public:
             return value_to_return;
         }
 
+        int position_to_reach;
+
+        if (current_size % 2 == 0)
+        {
+            position_to_reach = current_size / 2;
+        }
+        else
+        {
+            position_to_reach = (current_size + 1) / 2;
+        }
+
+        ListNode *cralwer = head;
+
+        for (int i = 1; i < position_to_reach; i++)
+        {
+            cralwer = cralwer->next;
+        }
+
         
     }
 
@@ -286,14 +348,14 @@ int main()
     /************************************************************************************/
     FrontMiddleBackQueue q;
     q.pushBack(1);
-    q.pushBack(2);
-    q.pushMiddle(3);
-    q.pushMiddle(4);
-    cout << q.popFront() << endl;
-    cout << q.popMiddle() << endl;
-    cout << q.popMiddle() << endl;
-    cout << q.popBack() << endl;
-    cout << q.popFront() << endl;
+    // q.pushBack(2);
+    // q.pushMiddle(3);
+    // q.pushMiddle(4);
+    // cout << q.popFront() << endl;
+    // cout << q.popMiddle() << endl;
+    // cout << q.popMiddle() << endl;
+    // cout << q.popBack() << endl;
+    // cout << q.popFront() << endl;
     /************************************************************************************/
     /************************************************************************************/
     /************************************************************************************/
