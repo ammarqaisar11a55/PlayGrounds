@@ -122,8 +122,8 @@ public:
     ListNode(int val)
     {
         this->val = val;
-        this->next = NULL;
         this->prev = NULL;
+        this->next = NULL;
     }
 };
 
@@ -154,19 +154,129 @@ void PrintList(ListNode *Head)
     g++ General_PlayGround.cpp -o Gp
 */
 
+class FrontMiddleBackQueue
+{
+public:
+    ListNode *head = nullptr;
+    ListNode *tail = nullptr;
+    int current_size;
 
-/**
- * Your MyCircularDeque object will be instantiated and called as such:
- * MyCircularDeque* obj = new MyCircularDeque(k);
- * bool param_1 = obj->insertFront(value);
- * bool param_2 = obj->insertLast(value);
- * bool param_3 = obj->deleteFront();
- * bool param_4 = obj->deleteLast();
- * int param_5 = obj->getFront();
- * int param_6 = obj->getRear();
- * bool param_7 = obj->isEmpty();
- * bool param_8 = obj->isFull();
- */
+    FrontMiddleBackQueue()
+    {
+        current_size = 0;
+    }
+
+    void pushFront(int val)
+    {
+        ListNode *node_to_insert = new ListNode(val);
+        current_size++;
+
+        if (head == nullptr)
+        {
+            head = tail = node_to_insert;
+            PrintList(head);
+            return;
+        }
+
+        head->prev = node_to_insert;
+        node_to_insert->next = head;
+        head = node_to_insert;
+        PrintList(head);
+    }
+
+    void pushMiddle(int val)
+    {
+    }
+
+    void pushBack(int val)
+    {
+        ListNode *node_to_insert = new ListNode(val);
+        current_size++;
+
+        if (tail == nullptr)
+        {
+            head = tail = node_to_insert;
+        }
+
+        tail->next = node_to_insert;
+        node_to_insert->prev = tail;
+        tail = node_to_insert;
+        PrintList(head);
+    }
+
+    int popFront()
+    {
+        if (current_size == 0)
+        {
+            return -1;
+        }
+
+        if (current_size == 1)
+        {
+            current_size--;
+            int value_to_return = head->val;
+            head = tail = nullptr;
+            return value_to_return;
+        }
+
+        current_size--;
+
+        ListNode *node_to_delete = head;
+        head = head->next;
+
+        head->prev = nullptr;
+        node_to_delete->next = nullptr;
+
+        int value_to_return = node_to_delete->val;
+        delete node_to_delete;
+        return value_to_return;
+    }
+
+    int popMiddle()
+    {
+        if (current_size == 0)
+        {
+            return -1;
+        }
+
+        if (current_size == 1)
+        {
+            current_size--;
+            int value_to_return = head->val;
+            head = tail = nullptr;
+            return value_to_return;
+        }
+
+        
+    }
+
+    int popBack()
+    {
+        if (current_size == 0)
+        {
+            return -1;
+        }
+
+        if (current_size == 1)
+        {
+            current_size--;
+            int value_to_return = tail->val;
+            head = tail = nullptr;
+            return value_to_return;
+        }
+
+        current_size--;
+
+        ListNode *node_to_delete = tail;
+        tail = tail->prev;
+        tail->next = nullptr;
+        node_to_delete->prev = nullptr;
+
+        int value_to_return = node_to_delete->val;
+        delete node_to_delete;
+        return value_to_return;
+    }
+};
 
 int main()
 {
@@ -174,7 +284,16 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
- 
+    FrontMiddleBackQueue q;
+    q.pushBack(1);
+    q.pushBack(2);
+    q.pushMiddle(3);
+    q.pushMiddle(4);
+    cout << q.popFront() << endl;
+    cout << q.popMiddle() << endl;
+    cout << q.popMiddle() << endl;
+    cout << q.popBack() << endl;
+    cout << q.popFront() << endl;
     /************************************************************************************/
     /************************************************************************************/
     /************************************************************************************/
