@@ -154,191 +154,37 @@ void PrintList(ListNode *Head)
     g++ General_PlayGround.cpp -o Gp
 */
 
-class FrontMiddleBackQueue
+class Node
 {
 public:
-    ListNode *head = nullptr;
-    ListNode *tail = nullptr;
-    int current_size;
+    int val;
+    Node *prev;
+    Node *next;
+    Node *child;
 
-    FrontMiddleBackQueue()
-    {
-        current_size = 0;
-    }
-
-    void pushFront(int val)
-    {
-        ListNode *node_to_insert = new ListNode(val);
-        current_size++;
-
-        if (head == nullptr)
-        {
-            head = tail = node_to_insert;
-            PrintList(head);
-            return;
-        }
-
-        head->prev = node_to_insert;
-        node_to_insert->next = head;
-        head = node_to_insert;
-        PrintList(head);
-    }
-
-    void pushMiddle(int val)
-    {
-        ListNode *node_to_insert = new ListNode(val);
-
-        if (head == nullptr)
-        {
-            current_size++;
-            head = tail = node_to_insert;
-            PrintList(head);
-            return;
-        }
-
-        int position_to_reach;
-
-        if (current_size % 2 == 0)
-        {
-            position_to_reach = current_size / 2;
-        }
-        else
-        {
-            position_to_reach = (current_size + 1) / 2;
-        }
-
-        ListNode *cralwer = head;
-
-        for (int i = 1; i < position_to_reach; i++)
-        {
-            cralwer = cralwer->next;
-        }
-
-        node_to_insert->prev = cralwer;
-        node_to_insert->next = cralwer->next;
-
-        if (cralwer->next != nullptr)
-        {
-            node_to_insert->next->prev = node_to_insert;
-        }
-        else
-        {
-            tail = node_to_insert;
-        }
-
-        PrintList(head);
-
-        cralwer->next = node_to_insert;
-        current_size++;
-    }
-
-    void pushBack(int val)
-    {
-        ListNode *node_to_insert = new ListNode(val);
-        current_size++;
-
-        if (tail == nullptr)
-        {
-            head = tail = node_to_insert;
-        }
-
-        tail->next = node_to_insert;
-        node_to_insert->prev = tail;
-        tail = node_to_insert;
-        PrintList(head);
-    }
-
-    int popFront()
-    {
-        if (current_size == 0)
-        {
-            return -1;
-        }
-
-        if (current_size == 1)
-        {
-            current_size--;
-            int value_to_return = head->val;
-            head = tail = nullptr;
-            return value_to_return;
-        }
-
-        current_size--;
-
-        ListNode *node_to_delete = head;
-        head = head->next;
-
-        head->prev = nullptr;
-        node_to_delete->next = nullptr;
-
-        int value_to_return = node_to_delete->val;
-        delete node_to_delete;
-        return value_to_return;
-    }
-
-    int popMiddle()
-    {
-        if (current_size == 0)
-        {
-            return -1;
-        }
-
-        if (current_size == 1)
-        {
-            current_size--;
-            int value_to_return = head->val;
-            head = tail = nullptr;
-            return value_to_return;
-        }
-
-        int position_to_reach;
-
-        if (current_size % 2 == 0)
-        {
-            position_to_reach = current_size / 2;
-        }
-        else
-        {
-            position_to_reach = (current_size + 1) / 2;
-        }
-
-        ListNode *cralwer = head;
-
-        for (int i = 1; i < position_to_reach; i++)
-        {
-            cralwer = cralwer->next;
-        }
-
-        
-    }
-
-    int popBack()
-    {
-        if (current_size == 0)
-        {
-            return -1;
-        }
-
-        if (current_size == 1)
-        {
-            current_size--;
-            int value_to_return = tail->val;
-            head = tail = nullptr;
-            return value_to_return;
-        }
-
-        current_size--;
-
-        ListNode *node_to_delete = tail;
-        tail = tail->prev;
-        tail->next = nullptr;
-        node_to_delete->prev = nullptr;
-
-        int value_to_return = node_to_delete->val;
-        delete node_to_delete;
-        return value_to_return;
-    }
+    Node(int _val) : val(_val), prev(nullptr), next(nullptr), child(nullptr) {}
 };
+
+void DFS(Node* &head,Node* &parent_node,Node* next_part)
+{
+    while(head)
+    {
+        if(head->child)
+        {
+            Node* current_node_next_part = head->next;
+            current_node_next_part->prev = nullptr;
+                        
+
+        }
+
+        head = head->next;
+    }
+}
+
+Node *flatten(Node *head)
+{
+    return head;
+}
 
 int main()
 {
@@ -346,16 +192,7 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
-    FrontMiddleBackQueue q;
-    q.pushBack(1);
-    // q.pushBack(2);
-    // q.pushMiddle(3);
-    // q.pushMiddle(4);
-    // cout << q.popFront() << endl;
-    // cout << q.popMiddle() << endl;
-    // cout << q.popMiddle() << endl;
-    // cout << q.popBack() << endl;
-    // cout << q.popFront() << endl;
+
     /************************************************************************************/
     /************************************************************************************/
     /************************************************************************************/
