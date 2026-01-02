@@ -164,13 +164,14 @@ public:
 
     MyCircularDeque(int k)
     {
-        int Max_size = k;
+        Max_size = k;
         Current_size = 0;
     }
 
     bool insertFront(int value)
     {
-        if (Current_size + 1 <= Max_size)
+
+        if (Current_size < Max_size)
         {
             ListNode *node_to_insert = new ListNode(value);
             Current_size++;
@@ -194,7 +195,8 @@ public:
 
     bool insertLast(int value)
     {
-        if (Current_size + 1 <= Max_size)
+
+        if (Current_size < Max_size)
         {
             ListNode *node_to_insert = new ListNode(value);
             Current_size++;
@@ -249,6 +251,7 @@ public:
         if (Current_size == 1)
         {
             head = tail = nullptr;
+            Current_size--;
             return true;
         }
 
@@ -304,15 +307,15 @@ int main()
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
     MyCircularDeque t(3);
-    cout<<t.insertLast(1)<<endl;
-    cout<<t.insertLast(2)<<endl;
-    cout<<t.insertFront(3)<<endl;
-    cout<<t.insertFront(4)<<endl;
-    cout<<t.getRear()<<endl;
-    cout<<t.isFull()<<endl;
-    cout<<t.deleteLast()<<endl;
-    cout<<t.insertFront(4)<<endl;
-    cout<<t.getFront()<<endl;
+    cout << t.insertLast(1) << endl;
+    cout << t.insertLast(2) << endl;
+    cout << t.insertFront(3) << endl;
+    cout << t.insertFront(4) << endl;
+    cout << t.getRear() << endl;
+    cout << t.isFull() << endl;
+    cout << t.deleteLast() << endl;
+    cout << t.insertFront(4) << endl;
+    cout << t.getFront() << endl;
     /************************************************************************************/
     /************************************************************************************/
     /************************************************************************************/
