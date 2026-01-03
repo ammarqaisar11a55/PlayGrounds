@@ -173,8 +173,8 @@ void DFS(Node* &head,Node* &parent_node,Node* next_part)
         {
             Node* current_node_next_part = head->next;
             current_node_next_part->prev = nullptr;
-                        
-
+            head->next = head->child;            
+            DFS(head->child,head,current_node_next_part);
         }
 
         head = head->next;
