@@ -165,16 +165,16 @@ public:
     Node(int _val) : val(_val), prev(nullptr), next(nullptr), child(nullptr) {}
 };
 
-void DFS(Node* &head,Node* &parent_node,Node* next_part)
+void DFS(Node *&head, Node *&parent_node, Node *next_part)
 {
-    while(head)
+    while (head)
     {
-        if(head->child)
+        if (head->child)
         {
-            Node* current_node_next_part = head->next;
+            Node *current_node_next_part = head->next;
             current_node_next_part->prev = nullptr;
-            head->next = head->child;            
-            DFS(head->child,head,current_node_next_part);
+            head->next = head->child;
+            DFS(head->child, head, current_node_next_part);
         }
 
         head = head->next;
@@ -186,12 +186,44 @@ Node *flatten(Node *head)
     return head;
 }
 
+bool isvalid(vector<int>arr, int target, int d)
+{
+    for(auto i : arr)
+    {
+        if(abs(i - target) <= d)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+int findTheDistanceValue(vector<int> arr1, vector<int> arr2, int d)
+{
+    int res = 0;
+    sort(arr2.begin(), arr2.end());
+
+    for (int i = 0; i < arr1.size(); i++)
+    {
+       if(isvalid(arr2,arr1[i],d))
+       {
+            res++;
+       }
+    }
+
+    return res;
+}
+
 int main()
 {
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
+    cout << findTheDistanceValue(vector<int>{4, 5, 8}, vector<int>{10, 9, 1, 8}, 2) << endl;
+    cout << findTheDistanceValue(vector<int>{1, 4, 2, 3}, vector<int>{-4, -3, 6, 10, 20, 30}, 3) << endl;
+    cout << findTheDistanceValue(vector<int>{2, 1, 100, 3}, vector<int>{-5, -2, 10, -3, 7}, 6) << endl;
 
     /************************************************************************************/
     /************************************************************************************/
