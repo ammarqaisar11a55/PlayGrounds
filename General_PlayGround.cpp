@@ -186,38 +186,23 @@ Node *flatten(Node *head)
     return head;
 }
 
-vector<vector<int>> shiftGrid(vector<vector<int>> &grid, int k)
+string largestEven(string s)
 {
-    int m = grid.size();
-    int n = grid[0].size();
-
-    while (k--)
+    for(int i = s.length() - 1; i >= 0; i--)
     {
-        vector<vector<int>> temp(m,vector<int>(n));
+        int digit = s[i] - '0';
 
-        for (int i = 0; i < grid.size(); i++)
+        if(digit&1)
         {
-            for (int j = 0; j < grid[0].size(); j++)
-            {
-                if (i == m - 1 && j == n - 1)
-                {
-                    temp[0][0] = grid[i][j];
-                }
-                else if (j == n - 1)
-                {
-                    temp[i+1][0] = grid[i][j];
-                }
-                else
-                {
-                    temp[i][j+1] = grid[i][j];
-                }
-            }
+            s.pop_back();
         }
-
-        grid = temp;
+        else
+        {
+            break;
+        }
     }
 
-    return grid;
+    return s;
 }
 
 int main()
@@ -226,20 +211,10 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
-    vector<vector<int>> grid = {
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9}};
+    cout<<largestEven("1112")<<endl;
+    cout<<largestEven("221")<<endl;
+    cout<<largestEven("1")<<endl;
 
-    PrintMatrixVector(shiftGrid(grid, 1));
-
-    vector<vector<int>> grid2 = {
-        {3, 8, 1, 9},
-        {19, 7, 2, 5},
-        {4, 6, 11, 10},
-        {12, 0, 21, 13}};
-
-    PrintMatrixVector(shiftGrid(grid2, 4));
     /************************************************************************************/
     /************************************************************************************/
     /************************************************************************************/
