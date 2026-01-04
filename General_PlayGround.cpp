@@ -186,17 +186,38 @@ Node *flatten(Node *head)
     return head;
 }
 
-void Solve(int index, string time, int &res)
+vector<vector<int>> shiftGrid(vector<vector<int>> &grid, int k)
 {
-    
-}
+    int m = grid.size();
+    int n = grid[0].size();
 
-int countTime(string time)
-{
-    int res = 0;
+    while (k--)
+    {
+        vector<vector<int>> temp(m,vector<int>(n));
 
+        for (int i = 0; i < grid.size(); i++)
+        {
+            for (int j = 0; j < grid[0].size(); j++)
+            {
+                if (i == m - 1 && j == n - 1)
+                {
+                    temp[0][0] = grid[i][j];
+                }
+                else if (j == n - 1)
+                {
+                    temp[i+1][0] = grid[i][j];
+                }
+                else
+                {
+                    temp[i][j+1] = grid[i][j];
+                }
+            }
+        }
 
-    return res;
+        grid = temp;
+    }
+
+    return grid;
 }
 
 int main()
@@ -205,9 +226,20 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
-    cout<<countTime("?5:00")<<endl;
-    cout<<countTime("0?:0?")<<endl;
-    cout<<countTime("??:??")<<endl;
+    vector<vector<int>> grid = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}};
+
+    PrintMatrixVector(shiftGrid(grid, 1));
+
+    vector<vector<int>> grid2 = {
+        {3, 8, 1, 9},
+        {19, 7, 2, 5},
+        {4, 6, 11, 10},
+        {12, 0, 21, 13}};
+
+    PrintMatrixVector(shiftGrid(grid2, 4));
     /************************************************************************************/
     /************************************************************************************/
     /************************************************************************************/
