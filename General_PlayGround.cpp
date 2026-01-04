@@ -186,11 +186,15 @@ Node *flatten(Node *head)
     return head;
 }
 
-vector<int> getRow(int rowIndex)
+void Solve(int index, string time, int &res)
 {
-    vector<int>res(rowIndex + 1);
-
     
+}
+
+int countTime(string time)
+{
+    int res = 0;
+
 
     return res;
 }
@@ -201,9 +205,9 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
-    PrintVector(getRow(3));
-    PrintVector(getRow(0));
-    PrintVector(getRow(1));
+    cout<<countTime("?5:00")<<endl;
+    cout<<countTime("0?:0?")<<endl;
+    cout<<countTime("??:??")<<endl;
     /************************************************************************************/
     /************************************************************************************/
     /************************************************************************************/
