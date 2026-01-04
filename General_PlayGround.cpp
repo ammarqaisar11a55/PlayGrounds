@@ -186,31 +186,11 @@ Node *flatten(Node *head)
     return head;
 }
 
-bool isvalid(vector<int>arr, int target, int d)
+vector<int> getRow(int rowIndex)
 {
-    for(auto i : arr)
-    {
-        if(abs(i - target) <= d)
-        {
-            return false;
-        }
-    }
+    vector<int>res(rowIndex + 1);
 
-    return true;
-}
-
-int findTheDistanceValue(vector<int> arr1, vector<int> arr2, int d)
-{
-    int res = 0;
-    sort(arr2.begin(), arr2.end());
-
-    for (int i = 0; i < arr1.size(); i++)
-    {
-       if(isvalid(arr2,arr1[i],d))
-       {
-            res++;
-       }
-    }
+    
 
     return res;
 }
@@ -221,10 +201,9 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
-    cout << findTheDistanceValue(vector<int>{4, 5, 8}, vector<int>{10, 9, 1, 8}, 2) << endl;
-    cout << findTheDistanceValue(vector<int>{1, 4, 2, 3}, vector<int>{-4, -3, 6, 10, 20, 30}, 3) << endl;
-    cout << findTheDistanceValue(vector<int>{2, 1, 100, 3}, vector<int>{-5, -2, 10, -3, 7}, 6) << endl;
-
+    PrintVector(getRow(3));
+    PrintVector(getRow(0));
+    PrintVector(getRow(1));
     /************************************************************************************/
     /************************************************************************************/
     /************************************************************************************/
