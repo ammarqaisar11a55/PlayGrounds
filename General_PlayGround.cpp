@@ -186,23 +186,45 @@ Node *flatten(Node *head)
     return head;
 }
 
-string largestEven(string s)
+bool canAliceWin(int n)
 {
-    for(int i = s.length() - 1; i >= 0; i--)
-    {
-        int digit = s[i] - '0';
+    int stones_to_remove_on_this_turn = 10;
 
-        if(digit&1)
+    bool alice_turn = true;
+
+    while (true)
+    {
+        if (alice_turn)
         {
-            s.pop_back();
+            alice_turn = false;
+
+            if (stones_to_remove_on_this_turn > n)
+            {
+                return false;
+            }
+            else
+            {
+                n -= stones_to_remove_on_this_turn;
+                stones_to_remove_on_this_turn--;
+            }
         }
         else
         {
-            break;
+            alice_turn = true;
+
+            if (stones_to_remove_on_this_turn > n)
+            {
+                return true;
+            }
+            else
+            {
+                n -= stones_to_remove_on_this_turn;
+                stones_to_remove_on_this_turn--;
+            }
         }
     }
 
-    return s;
+    return true;
 }
 
 int main()
@@ -211,9 +233,9 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
-    cout<<largestEven("1112")<<endl;
-    cout<<largestEven("221")<<endl;
-    cout<<largestEven("1")<<endl;
+    cout << canAliceWin(12) << endl;
+    cout << canAliceWin(1) << endl;
+    cout << canAliceWin(11) << endl;
 
     /************************************************************************************/
     /************************************************************************************/
