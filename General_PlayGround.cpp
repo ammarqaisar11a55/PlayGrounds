@@ -186,45 +186,23 @@ Node *flatten(Node *head)
     return head;
 }
 
-bool canAliceWin(int n)
+int mirrorDistance(int n)
 {
-    int stones_to_remove_on_this_turn = 10;
 
-    bool alice_turn = true;
+    string no = to_string(n);
 
-    while (true)
+    reverse(no.begin(),no.end());
+
+    int new_n = 0;
+
+    for(int i = 0; i < no.length(); i++)
     {
-        if (alice_turn)
-        {
-            alice_turn = false;
-
-            if (stones_to_remove_on_this_turn > n)
-            {
-                return false;
-            }
-            else
-            {
-                n -= stones_to_remove_on_this_turn;
-                stones_to_remove_on_this_turn--;
-            }
-        }
-        else
-        {
-            alice_turn = true;
-
-            if (stones_to_remove_on_this_turn > n)
-            {
-                return true;
-            }
-            else
-            {
-                n -= stones_to_remove_on_this_turn;
-                stones_to_remove_on_this_turn--;
-            }
-        }
+        int digit = no[i] - '0';
+        new_n = new_n*10 + digit;
     }
 
-    return true;
+
+    return abs(n - new_n);
 }
 
 int main()
@@ -233,9 +211,9 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
-    cout << canAliceWin(12) << endl;
-    cout << canAliceWin(1) << endl;
-    cout << canAliceWin(11) << endl;
+    cout<<mirrorDistance(25)<<endl;
+    cout<<mirrorDistance(10)<<endl;
+    cout<<mirrorDistance(7)<<endl;
 
     /************************************************************************************/
     /************************************************************************************/
