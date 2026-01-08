@@ -186,11 +186,25 @@ Node *flatten(Node *head)
     return head;
 }
 
-int maxDistinct(string s)
+int findLeastNumOfUniqueInts(vector<int> arr, int k)
 {
-    unordered_set<char>st(s.begin(),s.end());
+    unordered_map<int,int>mp;
 
-    return (int)st.size();
+    for(int i : arr)
+    {
+        mp[i]++;
+    }
+
+    priority_queue<int,vector<int>,greater<int>>pq;
+
+    for(auto [val,freq] : mp)
+    {
+        pq.push(freq);
+    }
+
+    
+
+    return (int)pq.size();
 }
 
 int main()
@@ -199,9 +213,8 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
-    cout<<maxDistinct("abab")<<endl;
-    cout<<maxDistinct("abcd")<<endl;
-    cout<<maxDistinct("aaaa")<<endl;
+    cout<<findLeastNumOfUniqueInts(vector<int>{5,5,4},1)<<endl;
+    cout<<findLeastNumOfUniqueInts(vector<int>{4,3,1,1,3,3,2},3)<<endl;
 
     /************************************************************************************/
     /************************************************************************************/
