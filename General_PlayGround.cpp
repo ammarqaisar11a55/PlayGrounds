@@ -186,23 +186,11 @@ Node *flatten(Node *head)
     return head;
 }
 
-int mirrorDistance(int n)
+int maxDistinct(string s)
 {
+    unordered_set<char>st(s.begin(),s.end());
 
-    string no = to_string(n);
-
-    reverse(no.begin(),no.end());
-
-    int new_n = 0;
-
-    for(int i = 0; i < no.length(); i++)
-    {
-        int digit = no[i] - '0';
-        new_n = new_n*10 + digit;
-    }
-
-
-    return abs(n - new_n);
+    return (int)st.size();
 }
 
 int main()
@@ -211,9 +199,9 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
-    cout<<mirrorDistance(25)<<endl;
-    cout<<mirrorDistance(10)<<endl;
-    cout<<mirrorDistance(7)<<endl;
+    cout<<maxDistinct("abab")<<endl;
+    cout<<maxDistinct("abcd")<<endl;
+    cout<<maxDistinct("aaaa")<<endl;
 
     /************************************************************************************/
     /************************************************************************************/
