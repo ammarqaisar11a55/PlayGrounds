@@ -202,7 +202,27 @@ int findLeastNumOfUniqueInts(vector<int> arr, int k)
         pq.push(freq);
     }
 
-    
+    while(true)
+    {
+        if(pq.empty() == false)
+        {
+            if(k - pq.top() >= 0)
+            {
+                k -= pq.top();
+                pq.pop();
+            }
+            else
+            {
+                break;
+            }
+        }
+        else
+        {
+            break;
+        }
+    }
+
+
 
     return (int)pq.size();
 }
