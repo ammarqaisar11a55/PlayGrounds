@@ -186,46 +186,17 @@ Node *flatten(Node *head)
     return head;
 }
 
-int findLeastNumOfUniqueInts(vector<int> arr, int k)
+
+void DFS(TreeNode* root)
 {
-    unordered_map<int,int>mp;
+    if(root == nullptr) return;
 
-    for(int i : arr)
-    {
-        mp[i]++;
-    }
+    cout<<root->val<<" ";
 
-    priority_queue<int,vector<int>,greater<int>>pq;
-
-    for(auto [val,freq] : mp)
-    {
-        pq.push(freq);
-    }
-
-    while(true)
-    {
-        if(pq.empty() == false)
-        {
-            if(k - pq.top() >= 0)
-            {
-                k -= pq.top();
-                pq.pop();
-            }
-            else
-            {
-                break;
-            }
-        }
-        else
-        {
-            break;
-        }
-    }
-
-
-
-    return (int)pq.size();
+    DFS(root->left);
+    DFS(root->right);
 }
+
 
 int main()
 {
