@@ -186,17 +186,30 @@ Node *flatten(Node *head)
     return head;
 }
 
-
-void DFS(TreeNode* root)
+int residuePrefixes(string s)
 {
-    if(root == nullptr) return;
+    unordered_set<char>st;
+    string prefix;
 
-    cout<<root->val<<" ";
+    int res = 0;
 
-    DFS(root->left);
-    DFS(root->right);
+    for(int i = 0; i < s.length(); i++)
+    {
+        prefix.push_back(s[i]);
+        st.insert(s[i]);
+
+        if(st.size() == (int)prefix.length() % 3)
+        {
+            res++;
+        }
+        
+    }
+
+
+    return res;
+
+
 }
-
 
 int main()
 {
@@ -204,9 +217,9 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
-    cout<<findLeastNumOfUniqueInts(vector<int>{5,5,4},1)<<endl;
-    cout<<findLeastNumOfUniqueInts(vector<int>{4,3,1,1,3,3,2},3)<<endl;
-
+    cout<<residuePrefixes("abc")<<endl;
+    cout<<residuePrefixes("dd")<<endl;
+    cout<<residuePrefixes("bob")<<endl;
     /************************************************************************************/
     /************************************************************************************/
     /************************************************************************************/
