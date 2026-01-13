@@ -154,37 +154,6 @@ void PrintList(ListNode *Head)
     g++ General_PlayGround.cpp -o Gp
 */
 
-class Node
-{
-public:
-    int val;
-    Node *prev;
-    Node *next;
-    Node *child;
-
-    Node(int _val) : val(_val), prev(nullptr), next(nullptr), child(nullptr) {}
-};
-
-void DFS(Node *&head, Node *&parent_node, Node *next_part)
-{
-    while (head)
-    {
-        if (head->child)
-        {
-            Node *current_node_next_part = head->next;
-            current_node_next_part->prev = nullptr;
-            head->next = head->child;
-            DFS(head->child, head, current_node_next_part);
-        }
-
-        head = head->next;
-    }
-}
-
-Node *flatten(Node *head)
-{
-    return head;
-}
 
 
 int main()
