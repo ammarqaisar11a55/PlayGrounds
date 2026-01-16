@@ -155,9 +155,7 @@ void PrintList(ListNode *Head)
 */
 
 
-/*
-41
-*/
+
 
 int main()
 {
