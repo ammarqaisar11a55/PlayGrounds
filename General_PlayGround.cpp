@@ -155,11 +155,7 @@ void PrintList(ListNode *Head)
 */
 
 
-/*
 
-asd
-adasd
-*/
 
 
 
