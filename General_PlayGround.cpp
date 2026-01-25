@@ -154,39 +154,11 @@ void PrintList(ListNode *Head)
     g++ General_PlayGround.cpp -o Gp
 */
 
-int numRescueBoats(vector<int> people, int limit)
+int minimumDifference(vector<int> nums, int k)
 {
-    sort(people.begin(),people.end());
+    sort(nums.begin(), nums.end());
 
-    int res = 0;
-
-    int left = 0, right = people.size() - 1;
-
-    int current_board = limit;
-
-    while(left<right)
-    {
-        if(current_board - people[right] >= 0)
-        {
-            current_board -= people[right];
-            right--;
-            continue;
-        }
-
-        if(current_board - people[left] >= 0)
-        {
-            current_board -= people[left];
-            left++;
-            continue;
-        }
-        
-        res++;
-        current_board = limit;
-        right --;
-        
-    }
-
-    return res + 1;
+    return int(nums[(nums.size() - 1) % nums.size()] - nums[(nums.size() - 2) % nums.size()]);
 }
 
 int main()
@@ -195,11 +167,8 @@ int main()
 
     /************************************** Input Test Cases: **************************/
     /************************************************************************************/
-    cout<<"Expected:  1, " << numRescueBoats(vector<int>{1, 2}, 3) << endl;
-    cout<<"Expected:  3, " << numRescueBoats(vector<int>{3,2,2,1}, 3) << endl;
-    cout<<"Expected:  4, " << numRescueBoats(vector<int>{3,5,3,4}, 5) << endl;
-    cout<<"Expected:  2, " << numRescueBoats(vector<int>{2,4}, 5) << endl;
-    cout<<"Expected:  2, " << numRescueBoats(vector<int>{5,1,4,2}, 6) << endl;
+    cout << minimumDifference(vector<int>{90}, 1) << endl;
+    cout << minimumDifference(vector<int>{9, 4, 1, 7}, 2) << endl;
     /************************************************************************************/
     /************************************************************************************/
     /************************************************************************************/
