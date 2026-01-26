@@ -154,12 +154,6 @@ void PrintList(ListNode *Head)
     g++ General_PlayGround.cpp -o Gp
 */
 
-int minimumDifference(vector<int> nums, int k)
-{
-    sort(nums.begin(), nums.end());
-
-    return int(nums[(nums.size() - 1) % nums.size()] - nums[(nums.size() - 2) % nums.size()]);
-}
 
 int main()
 {
