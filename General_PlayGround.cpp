@@ -193,11 +193,6 @@ string reverseWords(string s)
         }
     }
 
-    if (first_word_vowel_count == 0)
-    {
-        return s;
-    }
-
     res = words[0] + ' ';
 
     for (int i = 1; i < words.size(); i++)
