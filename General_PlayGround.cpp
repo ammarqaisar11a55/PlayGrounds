@@ -154,18 +154,13 @@ void PrintList(ListNode *Head)
     g++ General_PlayGround.cpp -o Gp
 */
 
-vector<string> topKFrequent(vector<string> words, int k)
-{
 
-}
 
 int main()
 {
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    PrintVector(topKFrequent(vector<string>{"i","love","leetcode","i","love","coding"},2));
-    PrintVector(topKFrequent(vector<string>{"i","love","leetcode","i","love","coding"},4));
 
     /************************************************************************************/
 
