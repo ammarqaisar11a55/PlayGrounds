@@ -4,12 +4,7 @@ using ll = long long;
 
 void solve()
 {
-    string s;
-    cin>>s;
-    
-    int number = stoi(s.substr(3,3));
 
-    cout<<(number != 316 && number < 350 ? "YES" : "NO");
 }
 
 int main()
