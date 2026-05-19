@@ -152,16 +152,34 @@ void PrintList(ListNode *Head)
 
 /*
     g++ General_PlayGround.cpp -o Gp
-    
+
 */
 
+bool isAdjacentDiffAtMostTwo(string s)
+{
+    
+    for(int i = 0; i < s.length() - 1; i++)
+    {
+        int left = s[i] - '0';
+        int right = s[i + 1] - '0';
 
+        if(abs(left-right)>2 )
+        {
+            return false;
+        }
+    }
+
+
+    return true;
+}
 
 int main()
 {
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
+    cout << isAdjacentDiffAtMostTwo("132") << endl;
+    cout << isAdjacentDiffAtMostTwo("129") << endl;
 
     /************************************************************************************/
 
