@@ -155,22 +155,36 @@ void PrintList(ListNode *Head)
 
 */
 
-bool isAdjacentDiffAtMostTwo(string s)
+int firstUniqueEven(vector<int> nums)
 {
-    
-    for(int i = 0; i < s.length() - 1; i++)
-    {
-        int left = s[i] - '0';
-        int right = s[i + 1] - '0';
+    unordered_map<int, int> mp;
 
-        if(abs(left-right)>2 )
+    for (int i : nums)
+    {
+        if (i % 2 == 0)
+            mp[i]++;
+    }
+
+    unordered_set<int> st;
+
+    for (auto [x, y] : mp)
+    {
+        if(y==1)
         {
-            return false;
+            st.insert(x);
+        }
+    }
+    
+
+    for(int i : nums)
+    {
+        if(st.find(i) != st.end())
+        {
+            return i;
         }
     }
 
-
-    return true;
+    return -1;
 }
 
 int main()
@@ -178,8 +192,8 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    cout << isAdjacentDiffAtMostTwo("132") << endl;
-    cout << isAdjacentDiffAtMostTwo("129") << endl;
+    cout << firstUniqueEven(vector<int>{3, 4, 2, 5, 4, 6}) << endl;
+    cout << firstUniqueEven(vector<int>{4, 4}) << endl;
 
     /************************************************************************************/
 
