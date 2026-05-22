@@ -155,56 +155,66 @@ void PrintList(ListNode *Head)
 
 */
 
-int firstUniqueEven(vector<int> nums)
+vector<int> scoreValidator(vector<string> events)
 {
-    unordered_map<int, int> mp;
+    int score = 0, counter = 0;
 
-    for (int i : nums)
+    for (int i = 0; i < events.size(); i++)
     {
-        if (i % 2 == 0)
-            mp[i]++;
-    }
-
-    unordered_set<int> st;
-
-    for (auto [x, y] : mp)
-    {
-        if(y==1)
+        if (events[i] == "1" || events[i] == "WD" || events[i] == "NB")
         {
-            st.insert(x);
+            score += 1;
         }
-    }
-    
-
-    for(int i : nums)
-    {
-        if(st.find(i) != st.end())
+        else if (events[i] == "2")
         {
-            return i;
+            score += 2;
         }
+        else if (events[i] == "3")
+        {
+            score += 3;
+        }
+        else if (events[i] == "4")
+        {
+            score += 4;
+        }
+        else if (events[i] == "6")
+        {
+            score += 6;
+        }
+        else if (events[i] == "W")
+        {
+            counter++;
+        }
+
+        if(counter == 10)
+        {
+            break;
+        }
+
     }
 
-    return -1;
+    return {score,counter};
 }
 
-int main()
-{
-    auto start = chrono::high_resolution_clock::now();
+    int main()
+    {
+        auto start = chrono::high_resolution_clock::now();
 
-    /************************************** Input Test Cases: **************************/
-    cout << firstUniqueEven(vector<int>{3, 4, 2, 5, 4, 6}) << endl;
-    cout << firstUniqueEven(vector<int>{4, 4}) << endl;
+        /************************************** Input Test Cases: **************************/
+        PrintVector(scoreValidator(vector<string>{"1", "4", "W", "6", "WD"}));
+        PrintVector(scoreValidator(vector<string>{"WD", "NB", "0", "4", "4"}));
+        PrintVector(scoreValidator(vector<string>{"W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W"}));
 
-    /************************************************************************************/
+        /************************************************************************************/
 
-    // Record the end time
-    auto end = chrono::high_resolution_clock::now();
+        // Record the end time
+        auto end = chrono::high_resolution_clock::now();
 
-    // Calculate the duration in microseconds
-    auto duration = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+        // Calculate the duration in microseconds
+        auto duration = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
-    cout << '\n';
-    cout << "Execution time: " << duration << " ms" << endl;
+        cout << '\n';
+        cout << "Execution time: " << duration << " ms" << endl;
 
-    return 0;
-}
+        return 0;
+    }
