@@ -155,66 +155,48 @@ void PrintList(ListNode *Head)
 
 */
 
-vector<int> scoreValidator(vector<string> events)
+int countDigitOccurrences(vector<int> nums, int digit)
 {
-    int score = 0, counter = 0;
+    int res = 0;
 
-    for (int i = 0; i < events.size(); i++)
+    for (int i = 0; i < nums.size(); i++)
     {
-        if (events[i] == "1" || events[i] == "WD" || events[i] == "NB")
-        {
-            score += 1;
-        }
-        else if (events[i] == "2")
-        {
-            score += 2;
-        }
-        else if (events[i] == "3")
-        {
-            score += 3;
-        }
-        else if (events[i] == "4")
-        {
-            score += 4;
-        }
-        else if (events[i] == "6")
-        {
-            score += 6;
-        }
-        else if (events[i] == "W")
-        {
-            counter++;
-        }
+        int num = nums[i];
 
-        if(counter == 10)
+        while (num > 0)
         {
-            break;
-        }
+            int d = num % 10;
 
+            if (d == digit)
+            {
+                res++;
+            }
+
+            num /= 10;
+        }
     }
+    cout<<"mmar";
 
-    return {score,counter};
+    return res;
 }
 
-    int main()
-    {
-        auto start = chrono::high_resolution_clock::now();
+int main()
+{
+    auto start = chrono::high_resolution_clock::now();
 
-        /************************************** Input Test Cases: **************************/
-        PrintVector(scoreValidator(vector<string>{"1", "4", "W", "6", "WD"}));
-        PrintVector(scoreValidator(vector<string>{"WD", "NB", "0", "4", "4"}));
-        PrintVector(scoreValidator(vector<string>{"W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W"}));
+    /************************************** Input Test Cases: **************************/
+    cout << countDigitOccurrences(vector<int>{12, 54, 32, 22}, 2) << endl;
+    cout << countDigitOccurrences(vector<int>{1, 34, 7}, 9) << endl;
+    /************************************************************************************/
 
-        /************************************************************************************/
+    // Record the end time
+    auto end = chrono::high_resolution_clock::now();
 
-        // Record the end time
-        auto end = chrono::high_resolution_clock::now();
+    // Calculate the duration in microseconds
+    auto duration = chrono::duration_cast<chrono::milliseconds>(end - start).count();
 
-        // Calculate the duration in microseconds
-        auto duration = chrono::duration_cast<chrono::milliseconds>(end - start).count();
+    cout << '\n';
+    cout << "Execution time: " << duration << " ms" << endl;
 
-        cout << '\n';
-        cout << "Execution time: " << duration << " ms" << endl;
-
-        return 0;
-    }
+    return 0;
+}
