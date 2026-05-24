@@ -155,27 +155,61 @@ void PrintList(ListNode *Head)
 
 */
 
-int countDigitOccurrences(vector<int> nums, int digit)
+void Sieve_of_Eratosthenes(int limit, unordered_set<int> &Res)
 {
-    int res = 0;
+    vector<bool> Primes(limit + 1, true);
 
-    for (int i = 0; i < nums.size(); i++)
+    cout<<"Limit: "<<limit<<endl;
+
+    Primes[0] = Primes[1] = false;
+
+    for (int i = 2; i * i <= limit; i++)
     {
-        int num = nums[i];
-
-        while (num > 0)
+        if (Primes[i])
         {
-            int d = num % 10;
-
-            if (d == digit)
+            for (long long j = (long long)i * i; j <= limit; j += i)
             {
-                res++;
+                Primes[j] = false;
             }
-
-            num /= 10;
         }
     }
-    cout<<"mmar";
+
+    for (int i = 0; i < Primes.size(); i++)
+    {
+        if (Primes[i])
+        {
+            Res.insert(i);
+        }
+    }
+}
+
+int sumOfPrimesInRange(int n)
+{
+    int left = n;
+    int right = 0;
+
+    while (n > 0)
+    {
+        right = (right * 10) + (n % 10);
+        n /= 10;
+    }
+
+    int limit = max(left,right);
+
+
+    unordered_set<int>primes;
+
+    Sieve_of_Eratosthenes(limit,primes);
+    int res = 0;
+
+    
+    for(int i: primes)
+    {
+        if(i>= min(left,right) && i<= limit)
+        {
+            res+= i;
+        }
+    }
 
     return res;
 }
@@ -185,8 +219,10 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    cout << countDigitOccurrences(vector<int>{12, 54, 32, 22}, 2) << endl;
-    cout << countDigitOccurrences(vector<int>{1, 34, 7}, 9) << endl;
+    cout << sumOfPrimesInRange(13) << endl;
+    cout << sumOfPrimesInRange(10) << endl;
+    cout << sumOfPrimesInRange(8) << endl;
+
     /************************************************************************************/
 
     // Record the end time
