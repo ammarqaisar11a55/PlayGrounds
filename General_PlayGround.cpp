@@ -155,62 +155,40 @@ void PrintList(ListNode *Head)
 
 */
 
-void Sieve_of_Eratosthenes(int limit, unordered_set<int> &Res)
+vector<int> limitOccurrences(vector<int> nums, int k)
 {
-    vector<bool> Primes(limit + 1, true);
+    vector<int>res;
 
-    cout<<"Limit: "<<limit<<endl;
+    vector<int>unique;
 
-    Primes[0] = Primes[1] = false;
+    unordered_map<int,int>mp;
 
-    for (int i = 2; i * i <= limit; i++)
+    for(int i = 0; i < nums.size(); i++)
     {
-        if (Primes[i])
-        {
-            for (long long j = (long long)i * i; j <= limit; j += i)
+            if(mp.find(nums[i]) == mp.end())
             {
-                Primes[j] = false;
+                unique.push_back(nums[i]);
+                mp[nums[i]]++;
+            } 
+            else
+            {
+                mp[nums[i]]++;
             }
-        }
     }
 
-    for (int i = 0; i < Primes.size(); i++)
+    for(int i: unique)
     {
-        if (Primes[i])
+        int n = i;
+        int occ = mp[n];
+
+        int repeat = min(k,occ);
+
+        for(int j = 1; j <= repeat; j++)
         {
-            Res.insert(i);
+            res.push_back(n);
         }
     }
-}
-
-int sumOfPrimesInRange(int n)
-{
-    int left = n;
-    int right = 0;
-
-    while (n > 0)
-    {
-        right = (right * 10) + (n % 10);
-        n /= 10;
-    }
-
-    int limit = max(left,right);
-
-
-    unordered_set<int>primes;
-
-    Sieve_of_Eratosthenes(limit,primes);
-    int res = 0;
-
     
-    for(int i: primes)
-    {
-        if(i>= min(left,right) && i<= limit)
-        {
-            res+= i;
-        }
-    }
-
     return res;
 }
 
@@ -219,9 +197,8 @@ int main()
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-    cout << sumOfPrimesInRange(13) << endl;
-    cout << sumOfPrimesInRange(10) << endl;
-    cout << sumOfPrimesInRange(8) << endl;
+    PrintVector(limitOccurrences(vector<int>{1,1,1,2,2,3},2));
+    PrintVector(limitOccurrences(vector<int>{1,1,2,2,3},1));
 
     /************************************************************************************/
 
