@@ -155,12 +155,44 @@ void PrintList(ListNode *Head)
 
 */
 
+string mapWordWeights(vector<string> words, vector<int> weights)
+{
+
+    string res;
+
+    unordered_map<int,char>reversed_mappiing;
+
+    int temp = 0;
+
+    for(char c = 'z'; c>= 'a'; c--)
+    {
+        reversed_mappiing[temp++] = c;
+    }
+
+    for(int i = 0; i < words.size(); i++)
+    {
+        int weight_of_single = 0;
+
+        for(int j = 0; j < words[i].length(); j++)
+        {
+            int score_of_letter = weights[words[i][j] - 'a'];
+            weight_of_single += score_of_letter;
+        }
+
+        res += reversed_mappiing[weight_of_single % 26];
+    }
+
+    return res;
+}
+
 int main()
 {
     auto start = chrono::high_resolution_clock::now();
 
     /************************************** Input Test Cases: **************************/
-
+    cout<<mapWordWeights(vector<string>{"abcd","def","xyz"},vector<int>{5,3,12,14,1,2,3,2,10,6,6,9,7,8,7,10,8,9,6,9,9,8,3,7,7,2})<<endl;
+    cout<<mapWordWeights(vector<string>{"a","b","c"},vector<int>{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1})<<endl;
+    cout<<mapWordWeights(vector<string>{"abcd"},vector<int>{7,5,3,4,3,5,4,9,4,2,2,7,10,2,5,10,6,1,2,2,4,1,3,4,4,5})<<endl;
     /************************************************************************************/
 
     // Record the end time
